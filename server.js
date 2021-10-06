@@ -2,8 +2,10 @@ const path = require('path')
 const express = require('express')
 const app = express()
 
+const publicDirectoryPath = path.join(__dirname, '/public')
+app.use(express.static(publicDirectoryPath))
+
 app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
 
 app.get('/', function (req, res){
     res.render('login')
