@@ -8,7 +8,7 @@ const HomePage = () => {
       <LinkButton linklabel = 'Home' link="/home"/>
       <Header title='Home'/>
       <Header title = "Pages"/>
-      <LinkButton linklabel = 'Booking' link ='/bookingcreate'/>
+      <LinkButton linklabel = 'Booking' link ='/bookingcreate/1'/>
       <LinkButton linklabel = 'Logout' link = '/'/>
     </div>
     )

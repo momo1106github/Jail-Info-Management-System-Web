@@ -25,7 +25,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
             <HomePage/>   
           </Route>
 
-          <Route exact path ='/bookingcreate'>
+          <Route exact path ='/bookingcreate/:pg'>
             <BookingCreationPage/>
           </Route>
 
