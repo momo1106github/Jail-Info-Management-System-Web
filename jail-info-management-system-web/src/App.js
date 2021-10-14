@@ -2,14 +2,18 @@ import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
 import BookingCreationPage from './components/BookingCreationPage'
-//import {useState} from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { useState } from 'react'
 
 
 
  function App() {
- 
+ const [privilege, setPrivilege] = useState("");
+ const setView = (view) =>{
+   setPrivilege(view);
+ }
 
+ if(privilege){
    //Does a split between pages based on index setting
    return (
      <Router>
@@ -18,7 +22,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
          <Switch>
           
           <Route exact path ="/">
-            <LoginPage/>
+            <LoginPage setview = {setView}/>
           </Route>
 
           <Route exact path= "/home">
@@ -34,6 +38,24 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
     </div>
     </Router>
    );
+ }
+ else{
+  return (
+    <Router>
+    <div className="App">
+      <div className = "Login">
+        <Switch>
+         
+         <Route path ="/">
+           <LoginPage setview = {setPrivilege}/>
+         </Route>
+
+       </Switch>
+     </div>
+   </div>
+   </Router>
+  );
+ }
  }
 
 

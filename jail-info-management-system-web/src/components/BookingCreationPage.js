@@ -4,6 +4,7 @@ import LinkButton from './LinkButton'
 import Button from './Button'
 import { useHistory, useParams } from 'react-router'
 import { useState } from 'react'
+//import Dropdown from './Dropdown'
 
 
 //Displays the Booking creation pages
@@ -128,6 +129,10 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Parked Location' onChange = {setParkedLocation}/>
       <Input inputlabel = 'Parked-Other' onChange = {setParkedOther}/>
       </div>}
+
+      {pg === "3" && <div className = 'pg3'>
+        
+        </div>}
 
       <LinkButton linklabel = 'Logout' link = '/'/>
       {parseInt(pg) <= 5 && <div><Button buttonlabel = 'Proceed' onClick = {proceed}/></div>}

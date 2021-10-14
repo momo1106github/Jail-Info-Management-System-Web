@@ -5,7 +5,8 @@ import Header from './Header'
 import Button from './Button'
 
 
-const LoginPage = () => {
+
+const LoginPage = ({setview}) => {
     const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,6 +21,7 @@ const LoginPage = () => {
           //And then being able to immediately log back in
           setUsername('');
           setPassword('');
+          setview('myview');
         }
      }
     return (
