@@ -2,15 +2,18 @@ import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
 import BookingCreationPage from './components/BookingCreationPage'
+import IdleContainer from './components/IdleContainer'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 
 
 
  function App() {
+ const [departmentid, setDepartmentId] = useState("");
  const [privilege, setPrivilege] = useState("");
- const setView = (view) =>{
-   setPrivilege(view);
+ const logout = () =>{
+   setDepartmentId("");
+   setPrivilege("");
  }
 
  if(privilege){
@@ -18,11 +21,13 @@ import { useState } from 'react'
    return (
      <Router>
      <div className="App">
+       <IdleContainer timeoutfunction = {logout}></IdleContainer>
+
        <div className = "Login">
          <Switch>
           
           <Route exact path ="/">
-            <LoginPage setview = {setView}/>
+            <LoginPage setview = {setPrivilege}/>
           </Route>
 
           <Route exact path= "/home">
