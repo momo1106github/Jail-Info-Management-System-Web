@@ -27,7 +27,7 @@ import { useState } from 'react'
          <Switch>
           
           <Route exact path ="/">
-            <LoginPage setview = {setPrivilege}/>
+            <LoginPage setview = {setPrivilege} setdeptid = {setDepartmentId}/>
           </Route>
 
           <Route exact path= "/home">
