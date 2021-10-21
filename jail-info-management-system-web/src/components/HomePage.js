@@ -1,15 +1,11 @@
-import Header from './Header'
-import LinkButton from './LinkButton'
-
+import Header from './Header';
+import LinkButton from './LinkButton';
+import Navbar from "./Navbar/Navbar";
 const HomePage = () => {
 
     return (
       <div className= "Home Page">
-      <LinkButton linklabel = 'Home' link="/home"/>
-      <Header title='Home'/>
-      <Header title = "Pages"/>
-      <LinkButton linklabel = 'Booking' link ='/bookingcreate/1'/>
-      <LinkButton linklabel = 'Logout' link = '/'/>
+        <Navbar />
     </div>
     )
 }

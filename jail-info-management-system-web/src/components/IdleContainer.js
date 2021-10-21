@@ -5,7 +5,7 @@ const IdleContainer = ({timeoutfunction}) => {
 
     useEffect(() => {
          const timer = new IdleTimer({
-                timeout: 5, //expire after 5 minutes
+                timeout: 1000, //expire after 5 minutes
                 onTimeout: () => {
                 timeoutfunction();
                 }
