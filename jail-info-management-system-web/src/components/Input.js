@@ -1,8 +1,8 @@
-const Input = ({inputlabel, onChange}) => {
+const Input = ({inputlabel, onChange, inputtype = 'text'}) => {
     return (
         <div className= 'Input-box'>
             <label>{inputlabel}</label>
-            <input type = 'text' placeholder= 'Type Here' onChange= {(e)=>onChange(e.target.value)} />
+            <input type = {inputtype} placeholder= 'Type Here' onChange= {(e)=>onChange(e.target.value)} />
 
         </div>
     )
