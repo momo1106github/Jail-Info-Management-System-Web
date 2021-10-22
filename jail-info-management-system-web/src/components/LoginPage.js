@@ -10,7 +10,7 @@ import axios from 'axios'
 const LoginPage = ({setview, setdeptid}) => {
 
     const history = useHistory();
-    const [departmentId, setDepartmentId] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errormsg, setErrorMsg] = useState('');
 
@@ -18,33 +18,34 @@ const LoginPage = ({setview, setdeptid}) => {
      //Instead we just autologin and go to the booking page
      const login = () => {
        //Checks if there is anything entered
-        if(departmentId&&password){
+        if(username&&password){
           
-          axios.post("http://localhost:5000/api/user/login", {deptId: departmentId, password: password})
+          axios.post("http://localhost:5000/api/user/login", {deptId: username, password: password})
           .then (function (response){
           //Clears values to prevent logging out
           //And then being able to immediately log back in
-          setDepartmentId('');
+          setview(response.data.role);
+          setdeptid(username);
+          setUsername('');
           setPassword('');
-          setview('myview');
-          setdeptid(departmentId);
-            console.log(response);
+          console.log(response);
+          history.push('/home');
           })
           .catch(function (error){
-            console.log(error);
-            //setErrorMsg('Invalid Username or Password');
+            //console.log(error);
+            setErrorMsg('Invalid Username or Password');
           });
-          history.push('/home');
+          
           
         }
      }
     return (
         <div className= "Login Page">
               <Header title='Login' id='Login Header'/>
-              <Input inputlabel = 'Department ID ' onChange = {setDepartmentId}/>
+              <Input inputlabel = 'Department ID ' onChange = {setUsername}/>
               <Input inputlabel = 'Password ' onChange = {setPassword} />
               <Button buttonlabel='Login' onClick = {login} />
-              {errormsg && <div className = 'errormessage'>{errormsg}</div>}
+              <div className = 'errormessage'>{errormsg}</div>
         </div>
     )
 }
