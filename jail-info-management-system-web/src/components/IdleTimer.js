@@ -1,5 +1,7 @@
 class IdleTimer {
     constructor({ timeout, onTimeout }) {
+        //timeout = amt of time before timeout occurs
+        //onTimeout = function to call when timeout occurs
       this.timeout = timeout;
       this.onTimeout = onTimeout;
   
@@ -32,6 +34,7 @@ class IdleTimer {
     }
   
     tracker() {
+        //dictates which events will cause the timer to listen for and reset the timer for
       window.addEventListener("mousemove", this.eventHandler);
       window.addEventListener("scroll", this.eventHandler);
       window.addEventListener("keydown", this.eventHandler);

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import IdleTimer from "./IdleTimer";
 
+//Used as a container for the Idle timer class, and implements it in useEffect
 const IdleContainer = ({timeoutfunction}) => {
 
     useEffect(() => {
