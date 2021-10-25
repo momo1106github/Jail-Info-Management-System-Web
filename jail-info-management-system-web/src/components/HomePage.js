@@ -4,7 +4,7 @@ import LinkButton from './LinkButton'
 const HomePage = () => {
 
     return (
-      <div className= "Home Page">
+      <div className= "HomePage">
       <LinkButton linklabel = 'Home' link="/home"/>
       <Header title='Home'/>
       <Header title = "Pages"/>

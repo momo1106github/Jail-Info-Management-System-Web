@@ -28,7 +28,8 @@ const LoginPage = ({setview, setdeptid}) => {
           setdeptid(username);
           setUsername('');
           setPassword('');
-          console.log(response);
+          setErrorMsg('');
+          //console.log(response);
           history.push('/home');
           })
           .catch(function (error){
@@ -40,7 +41,7 @@ const LoginPage = ({setview, setdeptid}) => {
         }
      }
     return (
-        <div className= "Login Page">
+        <div className= "LoginPage">
               <Header title='Login' id='Login Header'/>
               <Input inputlabel = 'Department ID ' onChange = {setUsername}/>
               <Input inputlabel = 'Password ' onChange = {setPassword} inputtype ='password' />
