@@ -5,8 +5,11 @@ import Button from './Button'
 const HomePage = () => {
 
     return (
-      <div className= "Home Page">
+
+
+      <div className= "HomePage">
         <Navbar />
+           main
     </div>
     )
 }
