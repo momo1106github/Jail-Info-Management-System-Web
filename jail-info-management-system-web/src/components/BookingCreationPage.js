@@ -113,7 +113,7 @@ const BookingCreationPage = () => {
        </div>}
 
       {pg === "2" && <div className = 'pg2'>
-      <Dropdown setvalue = {setSex} items = {sextypes}/>
+      <Dropdown setvalue = {setSex} items = {sextypes} title = 'Sex'/>
       <Input inputlabel = 'Sex' onChange = {setSex}/>
       <Input inputlabel = 'Descent' onChange = {setDescent}/>
       <Input inputlabel = 'Hair Color' onChange = {setHairColor}/>
