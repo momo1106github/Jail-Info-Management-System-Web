@@ -3,6 +3,7 @@ import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
 import BookingCreationPage from './components/BookingCreationPage'
 import IdleContainer from './components/IdleContainer'
+import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 
@@ -16,18 +17,19 @@ import { useState } from 'react'
    setPrivilege("");
  }
 
- if(privilege){
+
    //Does a split between pages based on index setting
    return (
      <Router>
      <div className="App">
        <IdleContainer timeoutfunction = {logout}></IdleContainer>
+       <Redirect departmentid = {departmentid} role = {privilege} desturl = {"/"}/>
 
-       <div className = "Login">
+       <div className = "Page Container">
          <Switch>
           
           <Route exact path ="/">
-            <LoginPage setview = {setPrivilege}/>
+            <LoginPage setview = {setPrivilege} setdeptid = {setDepartmentId}/>
           </Route>
 
           <Route exact path= "/home">
@@ -43,24 +45,7 @@ import { useState } from 'react'
     </div>
     </Router>
    );
- }
- else{
-  return (
-    <Router>
-    <div className="App">
-      <div className = "Login">
-        <Switch>
-         
-         <Route path ="/">
-           <LoginPage setview = {setPrivilege}/>
-         </Route>
-
-       </Switch>
-     </div>
-   </div>
-   </Router>
-  );
- }
+ 
  }
 
 

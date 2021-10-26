@@ -74,7 +74,7 @@ const BookingCreationPage = () => {
 
   //In our output we check which page we are currently on and display that page
     return (
-      <div className= "Booking Page">
+      <div className= "BookingPage">
       <Header title='Booking Creation'/>
       <LinkButton linklabel = 'Home' link = '/home'/>
       {pg === "1" && <div className = 'pg1'>
