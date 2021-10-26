@@ -4,6 +4,7 @@ import LinkButton from './LinkButton'
 import Button from './Button'
 import { useHistory, useParams } from 'react-router'
 import { useState } from 'react'
+import Dropdown from './Dropdown'
 //import Dropdown from './Dropdown'
 
 
@@ -22,6 +23,14 @@ const BookingCreationPage = () => {
     history.push('/bookingcreate/'+(parseInt(pg)-1))
   }
 
+  //default values to be replaced, for user-defined lists
+  const sextypes = [
+    {value: 'male'},
+    {value: 'female'},
+    {value: 'other'}
+  ]
+
+  
   //Booking Values
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
@@ -104,6 +113,7 @@ const BookingCreationPage = () => {
        </div>}
 
       {pg === "2" && <div className = 'pg2'>
+      <Dropdown setvalue = {setSex} items = {sextypes}/>
       <Input inputlabel = 'Sex' onChange = {setSex}/>
       <Input inputlabel = 'Descent' onChange = {setDescent}/>
       <Input inputlabel = 'Hair Color' onChange = {setHairColor}/>
