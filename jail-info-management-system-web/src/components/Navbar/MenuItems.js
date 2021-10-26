@@ -1,19 +1,21 @@
+import LinkButton from "../LinkButton"
+
 export const MenuItems = [
     //trust accounts
     //subsections for cash
     {
         title: 'Home',
         url: '/home',
-        cName: 'nav-links'
+        cName: 'navItem',
     },
     { //create, log, search
         title: 'Booking',
         url: '/bookingcreate/1',
-        cName: 'nav-links'
+        cName: 'navItem',
     },
     {
         title: 'Logout',
         url: '/',
-        cName: 'nav-links'
+        cName: 'navItem',
     },
 ]

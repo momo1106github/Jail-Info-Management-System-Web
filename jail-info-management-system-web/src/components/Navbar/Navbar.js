@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LinkButton from '../LinkButton';
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 
@@ -11,10 +12,8 @@ class Navbar extends Component {
                 <ul className="nav-menu">
                     {MenuItems.map((item, index) => {
                         return (
-                            <li key={index}><a className={item.cName} href={item.url}>
-                                {item.title}
-                                </a>
-                            </li>
+                            <LinkButton page={item.cName} linklabel={item.title} link= {item.url}>
+                            </LinkButton>
                         )
                     })}
                 </ul>
