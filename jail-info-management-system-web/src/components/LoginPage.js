@@ -3,12 +3,6 @@ import Input from './Input'
 import {useState} from 'react'
 import Header from './Header'
 import Button from './Button'
-<<<<<<< HEAD
-import Navbar from './Navbar/Navbar'
-=======
-import axios from 'axios'
->>>>>>> 94059b11a90f9d6e0ed39d9887e44fa7b08fa87f
-
 
 
 const LoginPage = ({setview, setdeptid}) => {
