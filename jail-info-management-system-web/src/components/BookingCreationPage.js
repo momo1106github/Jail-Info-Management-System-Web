@@ -24,50 +24,69 @@ const BookingCreationPage = () => {
   }
 
   //default values to be replaced, for user-defined lists
-  const sextypes = [
+  const defaultlist = [
     {value: 'male'},
     {value: 'female'},
     {value: 'other'}
   ]
 
+  const gangstatuslist = [
+    {value: 'active'},
+    {value: 'associate'},
+    {value: 'former'}
+  ]
+
   
-  //Booking Values
+  //Basic Information
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
   const [lastname, setLastName] = useState("");
   const [suffix, setSuffix] = useState("");
-  const [streetaddress, setStreetAddress] = useState("");
-  const [apartmentnumber, setApartmentNumber] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [telephonenumber, setTelephoneNumber] = useState("");
-  const [streetaddresstemp, setStreetAddressTemp] = useState("");
-  const [apartmentnumbertemp, setApartmentNumberTemp] = useState("");
-  const [citytemp, setCityTemp] = useState("");
-  const [statetemp, setStateTemp] = useState("");
-  const [zipCodetemp, setZipCodeTemp] = useState("");
-  const [telephonenumbertemp, setTelephoneNumberTemp] = useState("");
+  const [aka, setAKA] = useState("");
   const [dob, setDOB] = useState("");
   const [age, setAge] = useState("");
   const [placeofbirth, setPOB] = useState("");
   const [foreignnational, setForeignNational] = useState("");
   const [ssn, setSSN] = useState("");
 
-  //pg2
+  //Address
+  const [streetaddress, setStreetAddress] = useState("");
+  const [apartmentnumber, setApartmentNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [telephonenumber, setTelephoneNumber] = useState("");
+
+  //Temp Address
+  const [streetaddresstemp, setStreetAddressTemp] = useState("");
+  const [apartmentnumbertemp, setApartmentNumberTemp] = useState("");
+  const [citytemp, setCityTemp] = useState("");
+  const [statetemp, setStateTemp] = useState("");
+  const [zipCodetemp, setZipCodeTemp] = useState("");
+  const [telephonenumbertemp, setTelephoneNumberTemp] = useState("");
+
+
+  //Physical Description
   const [sex, setSex] = useState("");
   const [descent, setDescent] = useState("");
   const [haircolor, setHairColor] = useState("");
   const [eyecolor, setEyeColor] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [scarsmarkstattoos, setScarsMarksTattoos] = useState("");
+  const [smt, setSMT] = useState("")
+  const [smtloc, setSMTLoc] = useState("")
+  const [unusualsmt, setUnusualScarsMarksTattoos] = useState("");
+
+  //Arrest Details
   const [datetimearrested, setDateTimeArrested] = useState("");
   const [arrestingagency, setArrestingAgency] = useState("");
   const [arrestlocation, setArrestLocation] = useState("");
   const [arrestcharges, setCharges] = useState("");
   const [arrestofficerid, setArrestingOfficerID] = useState("");
   const [transportofficerid, setTransportingOfficerID] = useState("");
+  const [deprepnum, setDepRepNum] = useState("");
+
+  //Vehicle Information
   const [driverslicensenumber, setDriversLicenseNumber] = useState("");
   const [driverslicensestate, setDriversLicenseState] = useState("");
   const [vehiclelicensenumber, setVehicleLicenseNumber] = useState("");
@@ -78,7 +97,62 @@ const BookingCreationPage = () => {
   const [vehicledisposition, setVehicleDisposition] = useState("");
   const [impoundcompany, setImpoundCompany] = useState("");
   const [parkedlocation, setParkedLocation] = useState("");
+  const [parkedcity, setParkedCity] = useState("");
   const [parkedother, setParkedOther] = useState("");
+
+  //Additional Inmate Information
+  const [specialid, setSpecialId] = useState("");
+  const [gangaffl, setGangAffl] = useState("");
+  const [gangloc, setGangLoc] = useState("");
+  const [gangstatus, setGangStatus] = useState("");
+
+  //Emergency Contact
+  const [ecfirstname, setEcFirstName] = useState("");
+  const [ecmiddlename, setEcMiddleName] = useState("");
+  const [eclastname, setEcLastName] = useState("");
+  const [ecsuffix, setEcSuffix] = useState("");
+  const [ecrelation, setEcRelation] = useState("");
+  const [ecstreetaddress, setEcStreetAddress] = useState("");
+  const [ecapartmentnumber, setEcApartmentNumber] = useState("");
+  const [eccity, setEcCity] = useState("");
+  const [ecstate, setEcState] = useState("");
+  const [eczipCode, setEcZipCode] = useState("");
+  const [ectelephonenumber, setEcTelephoneNumber] = useState("");
+
+  //Employment Information
+  const [occupation, setOccupation] = useState("");
+  const [skills, setSkills] = useState("");
+  const [highgradecomp, setHighGradeComp] = useState("");
+  const [abdirection, setAbDirection] = useState("");
+  const [employer, setEmployer] = useState("");
+  const [biztype, setBizType] = useState("");
+  const [position, setPosition] = useState("");
+  const [emstreetaddress, setEmStreetAddress] = useState("");
+  const [emsuitenumber, setEmSuiteNumber] = useState("");
+  const [emcity, setEmCity] = useState("");
+  const [emstate, setEmState] = useState("");
+  const [emzipCode, setEmZipCode] = useState("");
+  const [emtelephonenumber, setEmTelephoneNumber] = useState("");
+
+  //Medical Info
+  const [medicalinfo, setMedicalInfo] = useState("");
+  const [othermedicalinfo, setOtherMedicalInfo] = useState("");
+  const [observations, setObservations] = useState("");
+  const [otherobservations, setOtherObservations] = useState("");
+
+  //req sep of inmates
+  const [reqsepinmate, setReqSepInmate] = useState("");
+
+  //comments
+  const [comments, setComments] = useState("");
+
+  //Manual Overrides
+  const [bail, setBail] = useState("");
+  const [sentence, setSentence] = useState("");
+
+  //Automatically Calculate Vars
+  //TODO get Automatically computed vars
+  //Allow for list inputs for certain inputs like smts, smt locs, medicalinfo, obs,
 
 
   //In our output we check which page we are currently on and display that page
@@ -86,11 +160,19 @@ const BookingCreationPage = () => {
       <div className= "BookingPage">
       <Header title='Booking Creation'/>
       <LinkButton linklabel = 'Home' link = '/home'/>
-      {pg === "1" && <div className = 'pg1'>
+      <div className = 'bookingenterpage'>
+
+      <Header title = 'Basic Information'/>
       <Input inputlabel = 'First Name' onChange = {setFirstName}/>
       <Input inputlabel = 'Middle Name' onChange = {setMiddleName}/>
       <Input inputlabel = 'Last Name' onChange = {setLastName}/>
       <Input inputlabel = 'Suffix' onChange = {setSuffix}/>
+      <Input inputlabel = 'AKA' onChange = {setAKA}/>
+      <Input inputlabel = 'Age' onChange = {setAge}/>
+      <Input inputlabel = 'Place of Birth' onChange = {setPOB}/>
+      <Input inputlabel = 'Foreign National' onChange = {setForeignNational}/>
+      <Input inputlabel = 'Social Security Number' onChange = {setSSN}/>
+
       <Header title = 'Permanent Address'/>
       <Input inputlabel = 'Street Address' onChange = {setStreetAddress}/>
       <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumber}/>
@@ -98,6 +180,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'State' onChange = {setState}/>
       <Input inputlabel = 'ZipCode' onChange = {setZipCode}/>
       <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumber}/>
+
       <Header title = 'Temporary Address'/>
       <Input inputlabel = 'Street Address' onChange = {setStreetAddressTemp}/>
       <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumberTemp}/>
@@ -106,46 +189,98 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'ZipCode' onChange = {setZipCodeTemp}/>
       <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumberTemp}/>
       <Input inputlabel = 'Date of Birth' onChange = {setDOB}/>
-      <Input inputlabel = 'Age' onChange = {setAge}/>
-      <Input inputlabel = 'Place of Birth' onChange = {setPOB}/>
-      <Input inputlabel = 'Foreign National' onChange = {setForeignNational}/>
-      <Input inputlabel = 'Social Security Number' onChange = {setSSN}/>
-       </div>}
-
-      {pg === "2" && <div className = 'pg2'>
-      <Dropdown setvalue = {setSex} items = {sextypes} title = 'Sex'/>
+       
+      <Header title = 'Inmate Physical Description'/>
       <Input inputlabel = 'Sex' onChange = {setSex}/>
-      <Input inputlabel = 'Descent' onChange = {setDescent}/>
-      <Input inputlabel = 'Hair Color' onChange = {setHairColor}/>
-      <Input inputlabel = 'Eye Color' onChange = {setEyeColor}/>
+      <Dropdown setvalue = {setDescent} items = {defaultlist} title = 'Descent'/>
+      <Dropdown setvalue = {setHairColor} items = {defaultlist} title = 'HairColor'/>
+      <Dropdown setvalue = {setEyeColor} items = {defaultlist} title = 'EyeColor'/>
       <Input inputlabel = 'Height' onChange = {setHeight}/>
       <Input inputlabel = 'Weight' onChange = {setWeight}/>
-      <Input inputlabel = 'Scars, Marks and Tattoos' onChange = {setScarsMarksTattoos}/>
+      <Dropdown setvalue = {setSMT} items = {defaultlist} title = 'Scars, Marks and Tattoos'/>
+      <Dropdown setvalue = {setSMTLoc} items = {defaultlist} title = 'Scars, Marks and Tattoos Locations'/>
+      <Input inputlabel = 'Unusual Scars, Marks and Tattoos' onChange = {setUnusualScarsMarksTattoos}/>
+
+      <Header title = 'Arrest Details'/>
       <Input inputlabel = 'Date and Time Arrested' onChange = {setDateTimeArrested}/>
       <Input inputlabel = 'Arresting Agency' onChange = {setArrestingAgency}/>
-      <Input inputlabel = 'Arrest Location' onChange = {setArrestLocation}/>
+      <Dropdown setvalue = {setArrestLocation} items = {defaultlist} title = 'Arrest Location'/>
       <Input inputlabel = 'Arrest Charge(s)' onChange = {setCharges}/>
       <Input inputlabel = 'Arresting Officer Department ID' onChange = {setArrestingOfficerID}/>
       <Input inputlabel = 'Transporting Officer Department ID' onChange = {setTransportingOfficerID}/>
+
+      <Header title = 'Vehicle Information'/>
       <Input inputlabel = 'Drivers License Number' onChange = {setDriversLicenseNumber}/>
       <Input inputlabel = 'Drivers License State' onChange = {setDriversLicenseState}/>
       <Input inputlabel = 'Vehicle License Number' onChange = {setVehicleLicenseNumber}/>
-      <Input inputlabel = 'Vehicle License State' onChange = {setVehicleLicenseState}/>
+      <Input inputlabel = 'Vehicle License State' onChange = {setVehicleLicenseState}/> 
       <Input inputlabel = 'Vehicle Year' onChange = {setVehicleYear}/>
-      <Input inputlabel = 'Vehicle Make' onChange = {setVehicleMake}/>
-      <Input inputlabel = 'Vehicle Color' onChange = {setVehicleColor}/>
+      <Dropdown setvalue = {setVehicleMake} items = {defaultlist} title = 'Vehicle Make'/>
+      <Dropdown setvalue = {setVehicleColor} items = {defaultlist} title = 'Vehicle Color'/>
       <Input inputlabel = 'Vehicle Disposition' onChange = {setVehicleDisposition}/>
-      <Input inputlabel = 'Impound Company' onChange = {setImpoundCompany}/>
-      <Input inputlabel = 'Parked Location' onChange = {setParkedLocation}/>
+      <Dropdown setvalue = {setImpoundCompany} items = {defaultlist} title = 'Impound Company'/>
+      <Input inputlabel = 'Parked-Location' onChange = {setParkedLocation}/>
+      <Input inputlabel = 'Parked-City' onChange = {setParkedCity}/>
       <Input inputlabel = 'Parked-Other' onChange = {setParkedOther}/>
-      </div>}
+      <Input inputlabel = 'Department Report Number' onChange = {setDepRepNum}/>
 
-      {pg === "3" && <div className = 'pg3'>
-        
-        </div>}
+      <Header title = 'Additional Inmate Information'/>
+      <Dropdown setvalue = {setSpecialId} items = {defaultlist} title = 'Special Identifiers'/>
+      <Dropdown setvalue = {setGangAffl} items = {defaultlist} title = 'Gang Affiliation'/>
+      <Input inputlabel = 'Gang Affiliation Unlisted' onChange = {setGangAffl}/>
+      <Input inputlabel = 'Gang Location' onChange = {setGangLoc}/>
+      <Dropdown setvalue = {setGangStatus} items = {gangstatuslist} title = 'Gang Membership Status'/>
+      
+      <Header title = 'Emergency Contact'/>
+      <Input inputlabel = 'First Name' onChange = {setEcFirstName}/>
+      <Input inputlabel = 'Middle Name' onChange = {setEcMiddleName}/>
+      <Input inputlabel = 'Last Name' onChange = {setEcLastName}/>
+      <Input inputlabel = 'Suffix' onChange = {setEcSuffix}/>
+      <Dropdown setvalue = {setEcRelation} items = {defaultlist} title = 'Relationship to Inmate'/>
+      <Input inputlabel = 'Street Address' onChange = {setEcStreetAddress}/>
+      <Input inputlabel = 'Apartment Number' onChange = {setEcApartmentNumber}/>
+      <Input inputlabel = 'City' onChange = {setEcCity}/>
+      <Input inputlabel = 'State' onChange = {setEcState}/>
+      <Input inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
+      <Input inputlabel = 'Telephone Number' onChange = {setEcTelephoneNumber}/>
+
+      <Header title = 'Employment Information'/>
+      <Input inputlabel = 'Occupation' onChange = {setOccupation}/>
+      <Dropdown setvalue = {setSkills} items = {defaultlist} title = 'Skills'/>
+      <Input inputlabel = 'Highest Grade Complete' onChange = {setHighGradeComp}/>
+      <Dropdown setvalue = {setAbDirection} items = {defaultlist} title = 'Abiility to Understand Directions in English'/>
+      <Input inputlabel = 'Employer' onChange = {setEmployer}/>
+      <Input inputlabel = 'Type of Business' onChange = {setBizType}/>
+      <Input inputlabel = 'Position' onChange = {setPosition}/>
+      <Input inputlabel = 'Street Address' onChange = {setEmStreetAddress}/>
+      <Input inputlabel = 'Suite Number' onChange = {setEmSuiteNumber}/>
+      <Input inputlabel = 'City' onChange = {setEmCity}/>
+      <Input inputlabel = 'State' onChange = {setEmState}/>
+      <Input inputlabel = 'ZipCode' onChange = {setEmZipCode}/>
+      <Input inputlabel = 'Telephone Number' onChange = {setEmTelephoneNumber}/>
+
+      <Header title = 'Medical Information'/>
+      <Dropdown setvalue = {setMedicalInfo} items = {defaultlist} title = 'Medical Information'/>
+      <Input inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
+      <Dropdown setvalue = {setObservations} items = {defaultlist} title = 'Observations'/>
+      <Input inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
+
+      <Header title = 'Required Separation of Inmate'/>
+      <Input inputlabel = '' onChange = {setReqSepInmate}/>
+
+      <Header title = 'Comments'/>
+      <Input inputlabel = '' onChange = {setComments}/>
+
+      <Header title = 'Manual Overrides'/>
+      <Input inputlabel = 'Manual Bail' onChange = {setBail}/>
+      <Input inputlabel = 'Set Sentence' onChange = {setSentence}/>
+      
+      </div>
+
+    
 
       <LinkButton linklabel = 'Logout' link = '/'/>
-      {parseInt(pg) <= 5 && <div><Button buttonlabel = 'Proceed' onClick = {proceed}/></div>}
+      {parseInt(pg) == 1 && <div><Button buttonlabel = 'Confirm Input' onClick = {proceed}/></div>}
       {parseInt(pg) >= 2 && <div><Button buttonlabel = 'Back' onClick = {back}/></div>}
       </div>
     )
