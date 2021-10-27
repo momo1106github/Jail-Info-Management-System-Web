@@ -150,13 +150,14 @@ const BookingCreationPage = () => {
   //Medical Info
   const [medinfolist, setMedInfoList] = useState([]);
   const [othermedicalinfo, setOtherMedicalInfo] = useState("");
-  const [observations, setObservations] = useState("");
+  const [observationlist, setObservationlist] = useState([]);
   const [otherobservations, setOtherObservations] = useState("");
   //Medical Info Intermediate Values Used to add to medinfolist
   const [medicalinfo, setMedicalInfo] = useState("");
   const [doctorname, setDoctorName] = useState("");
   const [doctorphone, setDoctorPhone] = useState("");
   const [ispregnant, setIsPregnant] = useState("");
+  const [observation, setObservation] = useState("");
 
   //req sep of inmates
   const [reqsepinmate, setReqSepInmate] = useState("");
@@ -185,6 +186,10 @@ const BookingCreationPage = () => {
     else{
       setMedInfoList(medinfolist.concat({id: medinfolist.length, desc: medinfo, value:medinfo}));
     }
+  }
+
+  const addObservation = (obs)=>{
+    setObservationlist(observationlist.concat({id:observationlist.length, desc:obs}))
   }
 
   //In our output we check which page we are currently on and display that page
@@ -307,7 +312,14 @@ const BookingCreationPage = () => {
           ))}
         </ul>
       <Input inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
-      <Dropdown setvalue = {setObservations} items = {defaultlist} title = 'Observations'/>
+
+      <Dropdown setvalue = {setObservation} items = {medinfotestlist} title = 'Observations'/>
+      <Button buttonlabel = 'Add Selected Observations' onClick ={()=>addObservation(observation)}/>
+      <ul>
+          {observationlist.map((obs) => (
+            <li key={obs.id}>{obs.desc}</li>
+          ))}
+        </ul>
       <Input inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
 
       <Header2 title = 'Required Separation of Inmate'/>
