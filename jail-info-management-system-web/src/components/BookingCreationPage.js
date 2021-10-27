@@ -38,7 +38,11 @@ const BookingCreationPage = () => {
     {value: 'female'},
     {value: 'other'}
   ]
-
+  const medinfotestlist = [
+    {value: 'Diabetes'},
+    {value: 'Doctor'},
+    {value: 'Pregnant'}
+  ]
   const gangstatuslist = [
     {value: 'active'},
     {value: 'associate'},
@@ -144,10 +148,15 @@ const BookingCreationPage = () => {
   const [emtelephonenumber, setEmTelephoneNumber] = useState("");
 
   //Medical Info
-  const [medicalinfo, setMedicalInfo] = useState("");
+  const [medinfolist, setMedInfoList] = useState([]);
   const [othermedicalinfo, setOtherMedicalInfo] = useState("");
   const [observations, setObservations] = useState("");
   const [otherobservations, setOtherObservations] = useState("");
+  //Medical Info Intermediate Values Used to add to medinfolist
+  const [medicalinfo, setMedicalInfo] = useState("");
+  const [doctorname, setDoctorName] = useState("");
+  const [doctorphone, setDoctorPhone] = useState("");
+  const [ispregnant, setIsPregnant] = useState("");
 
   //req sep of inmates
   const [reqsepinmate, setReqSepInmate] = useState("");
@@ -167,6 +176,17 @@ const BookingCreationPage = () => {
     return true;
   }
 
+  const addMedInfo = (medinfo, docname, docphone, ispreg) => {
+    if(medinfo == "Doctor"){
+      setMedInfoList(medinfolist.concat({id: medinfolist.length, desc: `${medinfo}: ${docname} Phone: ${docphone}`, value: medinfo, docname: docname, docphone:docphone}));
+      console.log('doctor detected');
+    }
+
+    else{
+      setMedInfoList(medinfolist.concat({id: medinfolist.length, desc: medinfo, value:medinfo}));
+    }
+  }
+
   //In our output we check which page we are currently on and display that page
     return (
       <div className= "BookingPage">
@@ -182,6 +202,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Last Name' onChange = {setLastName}/>
       <Input inputlabel = 'Suffix' onChange = {setSuffix}/>
       <Input inputlabel = 'AKA' onChange = {setAKA}/>
+      <Input inputlabel = 'Date of Birth' onChange = {setDOB}/>
       <Input inputlabel = 'Age' onChange = {setAge}/>
       <Input inputlabel = 'Place of Birth' onChange = {setPOB}/>
       <Input inputlabel = 'Foreign National' onChange = {setForeignNational}/>
@@ -202,7 +223,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'State' onChange = {setStateTemp}/>
       <Input inputlabel = 'ZipCode' onChange = {setZipCodeTemp}/>
       <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumberTemp}/>
-      <Input inputlabel = 'Date of Birth' onChange = {setDOB}/>
+
        
       <Header2 title = 'Inmate Physical Description'/>
       <Input inputlabel = 'Sex' onChange = {setSex}/>
@@ -274,7 +295,17 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Telephone Number' onChange = {setEmTelephoneNumber}/>
 
       <Header2 title = 'Medical Information'/>
-      <Dropdown setvalue = {setMedicalInfo} items = {defaultlist} title = 'Medical Information'/>
+      <Dropdown setvalue = {setMedicalInfo} items = {medinfotestlist} title = 'Medical Information'/>
+      {medicalinfo === 'Doctor' &&<div className = 'DoctorDetails'>
+        <Input inputlabel = 'Name' onChange = {setDoctorName}/>
+        <Input inputlabel = 'Telephone' onChange = {setDoctorPhone}/>
+        </div>}
+      <Button buttonlabel = 'Add Selected Medical Information' onClick ={()=>addMedInfo(medicalinfo,doctorname, doctorphone, ispregnant)}/>
+      <ul>
+          {medinfolist.map((medinfo) => (
+            <li key={medinfo.id}>{medinfo.desc}</li>
+          ))}
+        </ul>
       <Input inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
       <Dropdown setvalue = {setObservations} items = {defaultlist} title = 'Observations'/>
       <Input inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
