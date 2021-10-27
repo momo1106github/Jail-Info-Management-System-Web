@@ -5,6 +5,7 @@ import Button from './Button'
 import { useHistory, useParams } from 'react-router'
 import { useState } from 'react'
 import Dropdown from './Dropdown'
+import Header2 from './Header2'
 //import Dropdown from './Dropdown'
 
 
@@ -15,10 +16,18 @@ const BookingCreationPage = () => {
 
   //Buttons are used to proceed forward and backward through the booking process
   const history = useHistory();
-  const proceed = () =>{
+  const confirmInput = () =>{
+    if(ValidateInput()){
+      //Once input is validated calculate bail if not manually entered, and sentencing if entered
+      //Sentencing might be included in separate component since it will likely be used at other points in time than during booking as well
       history.push('/bookingcreate/'+(parseInt(pg)+1))
+    }
+    else{
+      //alert
+    }
   }
 
+  //Outdated
   const back = () =>{
     history.push('/bookingcreate/'+(parseInt(pg)-1))
   }
@@ -54,7 +63,7 @@ const BookingCreationPage = () => {
   const [apartmentnumber, setApartmentNumber] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [zipcode, setZipCode] = useState("");
   const [telephonenumber, setTelephoneNumber] = useState("");
 
   //Temp Address
@@ -154,15 +163,20 @@ const BookingCreationPage = () => {
   //TODO get Automatically computed vars
   //Allow for list inputs for certain inputs like smts, smt locs, medicalinfo, obs,
 
+  const ValidateInput = () =>{
+    return true;
+  }
 
   //In our output we check which page we are currently on and display that page
     return (
       <div className= "BookingPage">
       <Header title='Booking Creation'/>
       <LinkButton linklabel = 'Home' link = '/home'/>
+     
+      {parseInt(pg)===1 &&
       <div className = 'bookingenterpage'>
 
-      <Header title = 'Basic Information'/>
+      <Header2 title = 'Basic Information'/>
       <Input inputlabel = 'First Name' onChange = {setFirstName}/>
       <Input inputlabel = 'Middle Name' onChange = {setMiddleName}/>
       <Input inputlabel = 'Last Name' onChange = {setLastName}/>
@@ -173,7 +187,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Foreign National' onChange = {setForeignNational}/>
       <Input inputlabel = 'Social Security Number' onChange = {setSSN}/>
 
-      <Header title = 'Permanent Address'/>
+      <Header2 title = 'Permanent Address'/>
       <Input inputlabel = 'Street Address' onChange = {setStreetAddress}/>
       <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumber}/>
       <Input inputlabel = 'City' onChange = {setCity}/>
@@ -181,7 +195,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'ZipCode' onChange = {setZipCode}/>
       <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumber}/>
 
-      <Header title = 'Temporary Address'/>
+      <Header2 title = 'Temporary Address'/>
       <Input inputlabel = 'Street Address' onChange = {setStreetAddressTemp}/>
       <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumberTemp}/>
       <Input inputlabel = 'City' onChange = {setCityTemp}/>
@@ -190,7 +204,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumberTemp}/>
       <Input inputlabel = 'Date of Birth' onChange = {setDOB}/>
        
-      <Header title = 'Inmate Physical Description'/>
+      <Header2 title = 'Inmate Physical Description'/>
       <Input inputlabel = 'Sex' onChange = {setSex}/>
       <Dropdown setvalue = {setDescent} items = {defaultlist} title = 'Descent'/>
       <Dropdown setvalue = {setHairColor} items = {defaultlist} title = 'HairColor'/>
@@ -201,7 +215,7 @@ const BookingCreationPage = () => {
       <Dropdown setvalue = {setSMTLoc} items = {defaultlist} title = 'Scars, Marks and Tattoos Locations'/>
       <Input inputlabel = 'Unusual Scars, Marks and Tattoos' onChange = {setUnusualScarsMarksTattoos}/>
 
-      <Header title = 'Arrest Details'/>
+      <Header2 title = 'Arrest Details'/>
       <Input inputlabel = 'Date and Time Arrested' onChange = {setDateTimeArrested}/>
       <Input inputlabel = 'Arresting Agency' onChange = {setArrestingAgency}/>
       <Dropdown setvalue = {setArrestLocation} items = {defaultlist} title = 'Arrest Location'/>
@@ -209,7 +223,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Arresting Officer Department ID' onChange = {setArrestingOfficerID}/>
       <Input inputlabel = 'Transporting Officer Department ID' onChange = {setTransportingOfficerID}/>
 
-      <Header title = 'Vehicle Information'/>
+      <Header2 title = 'Vehicle Information'/>
       <Input inputlabel = 'Drivers License Number' onChange = {setDriversLicenseNumber}/>
       <Input inputlabel = 'Drivers License State' onChange = {setDriversLicenseState}/>
       <Input inputlabel = 'Vehicle License Number' onChange = {setVehicleLicenseNumber}/>
@@ -224,14 +238,14 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'Parked-Other' onChange = {setParkedOther}/>
       <Input inputlabel = 'Department Report Number' onChange = {setDepRepNum}/>
 
-      <Header title = 'Additional Inmate Information'/>
+      <Header2 title = 'Additional Inmate Information'/>
       <Dropdown setvalue = {setSpecialId} items = {defaultlist} title = 'Special Identifiers'/>
       <Dropdown setvalue = {setGangAffl} items = {defaultlist} title = 'Gang Affiliation'/>
       <Input inputlabel = 'Gang Affiliation Unlisted' onChange = {setGangAffl}/>
       <Input inputlabel = 'Gang Location' onChange = {setGangLoc}/>
       <Dropdown setvalue = {setGangStatus} items = {gangstatuslist} title = 'Gang Membership Status'/>
       
-      <Header title = 'Emergency Contact'/>
+      <Header2 title = 'Emergency Contact'/>
       <Input inputlabel = 'First Name' onChange = {setEcFirstName}/>
       <Input inputlabel = 'Middle Name' onChange = {setEcMiddleName}/>
       <Input inputlabel = 'Last Name' onChange = {setEcLastName}/>
@@ -244,7 +258,7 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
       <Input inputlabel = 'Telephone Number' onChange = {setEcTelephoneNumber}/>
 
-      <Header title = 'Employment Information'/>
+      <Header2 title = 'Employment Information'/>
       <Input inputlabel = 'Occupation' onChange = {setOccupation}/>
       <Dropdown setvalue = {setSkills} items = {defaultlist} title = 'Skills'/>
       <Input inputlabel = 'Highest Grade Complete' onChange = {setHighGradeComp}/>
@@ -259,28 +273,63 @@ const BookingCreationPage = () => {
       <Input inputlabel = 'ZipCode' onChange = {setEmZipCode}/>
       <Input inputlabel = 'Telephone Number' onChange = {setEmTelephoneNumber}/>
 
-      <Header title = 'Medical Information'/>
+      <Header2 title = 'Medical Information'/>
       <Dropdown setvalue = {setMedicalInfo} items = {defaultlist} title = 'Medical Information'/>
       <Input inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
       <Dropdown setvalue = {setObservations} items = {defaultlist} title = 'Observations'/>
       <Input inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
 
-      <Header title = 'Required Separation of Inmate'/>
+      <Header2 title = 'Required Separation of Inmate'/>
       <Input inputlabel = '' onChange = {setReqSepInmate}/>
 
-      <Header title = 'Comments'/>
+      <Header2 title = 'Comments'/>
       <Input inputlabel = '' onChange = {setComments}/>
 
-      <Header title = 'Manual Overrides'/>
+      <Header2 title = 'Manual Overrides'/>
       <Input inputlabel = 'Manual Bail' onChange = {setBail}/>
       <Input inputlabel = 'Set Sentence' onChange = {setSentence}/>
       
-      </div>
+      </div>}
 
+      {parseInt(pg)===2 &&
+      <div className = 'BookingReceiptPage'>
+           <Header2 title='Booking Receipt'/>
+           <div className = 'BookingReceiptBasicInfo'>
+           <label className = 'BookingReceiptTitle'>Basic Information</label>
+           <pre className = 'BookingReceiptText'>{`
+             First Name: ${firstname}  Middle Name: ${middlename}  Last name: ${lastname}  Suffix: ${suffix}
+             Also Known As: ${aka} Date of Birth: ${dob} Age: ${age} 
+             Place of Birth: ${placeofbirth} Foriegn National: ${foreignnational} Social Security Number: ${ssn}
+
+             `}</pre>
+             </div>
+
+             <div className = 'BookingReceiptAddress'>
+            <label className = 'BookingReceiptTitle'>Address</label>
+            <pre className = 'BookingReceiptText'>{`
+             Street Address: ${streetaddress}
+             Apartment Number: ${apartmentnumber}  City: ${city} State: ${state} Zipcode: ${zipcode}
+             Telephone Number: ${telephonenumber}
+
+             `}</pre></div>
+
+            {streetaddresstemp&&
+            <div className = 'BookingReceiptTempAddress'>
+            <label className = 'BookingReceiptTitle'>Temporary Address</label>
+            <pre className = 'BookingReceiptText'>{`
+             Street Address: ${streetaddresstemp}
+             Apartment Number: ${apartmentnumbertemp}  City: ${citytemp} State: ${statetemp} Zipcode: ${zipcode}
+             Telephone Number: ${telephonenumbertemp}
+             `}</pre></div>}
+
+           
+
+      </div>
+      }
     
 
       <LinkButton linklabel = 'Logout' link = '/'/>
-      {parseInt(pg) == 1 && <div><Button buttonlabel = 'Confirm Input' onClick = {proceed}/></div>}
+      {parseInt(pg) == 1 && <div><Button buttonlabel = 'Confirm Input' onClick = {confirmInput}/></div>}
       {parseInt(pg) >= 2 && <div><Button buttonlabel = 'Back' onClick = {back}/></div>}
       </div>
     )
