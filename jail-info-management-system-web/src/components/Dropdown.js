@@ -10,6 +10,7 @@ const Dropdown = ({title='',setvalue, items}) => {
         <div className= 'Dropdown'>
            <label>{title}</label>
            <select onChange = {handleSelect}>
+           <option id = 'defaultoption'>Please Select an Option</option>
            {items.map((item) => (
             <option key = {item.value} value={item.value}>{item.value}</option>
           ))}
