@@ -4,6 +4,7 @@ import LinkButton from './LinkButton'
 import Button from './Button'
 import { useHistory, useParams } from 'react-router'
 import { useState } from 'react'
+import Navbar from './Navbar/Navbar'
 //import Dropdown from './Dropdown'
 
 
@@ -75,6 +76,7 @@ const BookingCreationPage = () => {
   //In our output we check which page we are currently on and display that page
     return (
       <div className= "BookingPage">
+      <Navbar></Navbar>
       <Header title='Booking Creation'/>
       <LinkButton linklabel = 'Home' link = '/home'/>
       {pg === "1" && <div className = 'pg1'>

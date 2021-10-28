@@ -7,8 +7,6 @@ import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 
-
-
  function App() {
  const [departmentid, setDepartmentId] = useState("");
  const [privilege, setPrivilege] = useState("");
