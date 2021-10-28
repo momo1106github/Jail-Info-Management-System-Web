@@ -4,14 +4,13 @@ import { MenuItems } from "./MenuItems";
 import './Navbar.css';
 import {Link} from 'react-router-dom';
 import BookingDropdown from './Dropdown';
-import TrustDropdown from './Dropdown';
+import TrustDropdown from './TrustDropdown';
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
-    const [trustDrop, setDropDown2] = useState(false);
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+    const [trustDrop, setDropdown2] = useState(false);
+    const handleClick = () => setClick(!click); 
 
     const onMouseEnter = () => {
         setDropdown(true);
@@ -22,12 +21,12 @@ function Navbar() {
     };
     
     const onMouseEnter2 = () => {
-        setDropDown2(true);
-    };
-
-    const onMouseLeave2 = () => {
-        setDropdown(false);
+        setDropdown2(true);
     }
+    const onMouseLeave2 = () => {
+        setDropdown2(false);
+    };
+    
     
     return(
         <nav className="navbar">
@@ -55,11 +54,11 @@ function Navbar() {
                 </li>
                 <li
                 className='nav-item'
-                onMouseEnter2={onMouseEnter2}
-                onMouseLeave2={onMouseLeave2}
+                onMouseEnter={onMouseEnter2}
+                onMouseLeave={onMouseLeave2}
                 >
                     <Link
-                     to='/'
+                     to='/home'
                      className='nav-links'
                     >
                     Trust Accounts

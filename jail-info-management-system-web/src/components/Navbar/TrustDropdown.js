@@ -1,6 +1,7 @@
-import {TrustSubMenuItems} from './MenuItems';
 import React, {useState} from 'react';
+import {TrustSubMenuItems} from './MenuItems';
 import {Link} from 'react-router-dom';
+import './Dropdown.css'
 
 function TrustDropdown(){
     const [click, setClick] = useState(false);
