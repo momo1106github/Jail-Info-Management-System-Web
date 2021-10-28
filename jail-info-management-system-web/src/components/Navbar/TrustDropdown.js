@@ -1,10 +1,8 @@
+import {TrustSubMenuItems} from './MenuItems';
 import React, {useState} from 'react';
-import {SubMenuItems} from './MenuItems';
 import {Link} from 'react-router-dom';
-import './Dropdown.css'
 
-
-function BookingDropdown() {
+function TrustDropdown(){
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
 
@@ -13,7 +11,7 @@ function BookingDropdown() {
         <ul 
         onClick={handleClick}
         className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}>
-            {SubMenuItems.map((item, index) => {
+            {TrustSubMenuItems.map((item, index) => {
                 return (
                     <li key={index}>
                         <Link className={item.cName} 
@@ -28,6 +26,4 @@ function BookingDropdown() {
         </ul>
     );
 }
-
-
-export default BookingDropdown;
+export default TrustDropdown;

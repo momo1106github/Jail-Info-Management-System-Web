@@ -21,6 +21,14 @@ function Navbar() {
         setDropdown(false);
     };
     
+    const onMouseEnter2 = () => {
+        setDropDown2(true);
+    };
+
+    const onMouseLeave2 = () => {
+        setDropdown(false);
+    }
+    
     return(
         <nav className="navbar">
             <LinkButton linklabel="JISM" link="/home" page="navItem"/>
@@ -47,11 +55,11 @@ function Navbar() {
                 </li>
                 <li
                 className='nav-item'
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
+                onMouseEnter2={onMouseEnter2}
+                onMouseLeave2={onMouseLeave2}
                 >
                     <Link
-                     to='/bookingcreate/1'
+                     to='/'
                      className='nav-links'
                     >
                     Trust Accounts
