@@ -1,21 +1,37 @@
-import LinkButton from "../LinkButton"
 
-export const MenuItems = [
-    //trust accounts
-    //subsections for cash
+
+export const SubMenuItems = [
     {
-        title: 'Home',
-        url: '/home',
-        cName: 'navItem',
-    },
-    { //create, log, search
-        title: 'Booking',
+        title: 'New Entry',
         url: '/bookingcreate/1',
         cName: 'navItem',
     },
     {
-        title: 'Logout',
+        title: 'Booking Log',
         url: '/',
         cName: 'navItem',
     },
-]
+    {
+        title: 'Search Inmate',
+        url: '/',
+        cName: 'navItem',
+    },
+];
+
+export const TrustSubMenuItems = [
+    {
+        title: 'New Transaction',
+        url: '/home',
+        cName: 'navItem'
+    },
+    {
+        title: 'Transactions Log',
+        url: '/home',
+        cName: 'navItem'
+    },
+    {
+        title: 'Safe Transaction',
+        url: '/home',
+        cName: 'navItem',
+    },
+];

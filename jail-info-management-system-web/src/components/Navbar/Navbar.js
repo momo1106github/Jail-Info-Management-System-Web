@@ -1,25 +1,73 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import LinkButton from '../LinkButton';
-import { MenuItems } from "./MenuItems"
-import './Navbar.css'
+import { MenuItems } from "./MenuItems";
+import './Navbar.css';
+import {Link} from 'react-router-dom';
+import BookingDropdown from './Dropdown';
+import TrustDropdown from './Dropdown';
 
-class Navbar extends Component {
+function Navbar() {
+    const [click, setClick] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
+    const [trustDrop, setDropDown2] = useState(false);
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
+
+    const onMouseEnter = () => {
+        setDropdown(true);
+    };
+
+    const onMouseLeave = () => {
+        setDropdown(false);
+    };
     
-    render(){
-        return(
-            <nav className="NavbarItems">
-                <h1 className="navbar-logo">JISM</h1>
-                <ul className="nav-menu">
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <LinkButton page={item.cName} linklabel={item.title} link= {item.url}>
-                            </LinkButton>
-                        )
-                    })}
-                </ul>
-            </nav>
-        )
-    }
+    return(
+        <nav className="navbar">
+            <LinkButton linklabel="JISM" link="/home" page="navItem"/>
+            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                <li className='nav-item'>
+                <Link
+                to="/home"
+                className="navItem">
+                    Home
+                </Link>
+                </li>
+                <li
+                className='nav-item'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                >
+                    <Link
+                     to='/bookingcreate/1'
+                     className='nav-links'
+                    >
+                    Booking
+                    </Link> 
+                    {dropdown && <BookingDropdown/>}
+                </li>
+                <li
+                className='nav-item'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                >
+                    <Link
+                     to='/bookingcreate/1'
+                     className='nav-links'
+                    >
+                    Trust Accounts
+                    </Link> 
+                    {trustDrop && <TrustDropdown/>}
+                </li>
+                <li className='nav-item'>
+                <Link
+                to="/"
+                className="navItem">
+                    Logout
+                </Link>
+                        </li>
+            </ul>
+        </nav>
+    )
 }
 
-export default Navbar
+export default Navbar;
