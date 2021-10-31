@@ -6,7 +6,8 @@ const NewTransaction = () => {
     return (
         <div className = "NewTransaction">
             <Navbar></Navbar>
-            <h1>Hello</h1>
+            
+            
             
       </div>
       )

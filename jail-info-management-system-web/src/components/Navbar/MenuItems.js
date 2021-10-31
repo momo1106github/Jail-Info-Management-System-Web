@@ -26,12 +26,12 @@ export const TrustSubMenuItems = [
     },
     {
         title: 'Transactions Log',
-        url: '/home',
+        url: '/transactionlog',
         cName: 'navItem'
     },
     {
         title: 'Safe Transaction',
-        url: '/home',
+        url: '/safetransaction',
         cName: 'navItem',
     },
 ];

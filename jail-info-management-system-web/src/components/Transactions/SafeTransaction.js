@@ -5,8 +5,7 @@ const SafeTransaction = () => {
     return (
         <div className = "SafeTransaction">
             <Navbar></Navbar>
-            {/* <Header title='Trust: Safe Transaction'/>
-            <LinkButton linklabel = 'Home' link = '/home'/> */}
+            <h1>YES?</h1>
       </div>
       )
   }

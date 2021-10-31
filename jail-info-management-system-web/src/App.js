@@ -7,6 +7,8 @@ import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
+import SafeTransaction from './components/Transactions/SafeTransaction'
+import TransactionLog from './components/Transactions/TransactionLog'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -42,6 +44,14 @@ import NewTransaction from './components/Transactions/NewTransaction'
            <Route exact path ='/newtransaction'>
             <NewTransaction/>
           </Route> 
+
+          <Route exact path ='/safetransaction'>
+            <SafeTransaction/>
+          </Route> 
+
+          <Route exact path ='/transactionlog'>
+            <TransactionLog/>
+          </Route>
 
         </Switch>
       </div>
