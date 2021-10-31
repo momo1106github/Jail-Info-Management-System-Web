@@ -1,9 +1,4 @@
-import Header from './Header';
-import LinkButton from './LinkButton';
-import Navbar from "./Navbar/Navbar";
-import Button from './Button'
-import Search from './Search/search';
-import SearchBar from './Search/search';
+import Navbar from "../Navbar/Navbar";
 import { useState } from 'react';
 
 const NewTransaction = () => {
@@ -11,8 +6,8 @@ const NewTransaction = () => {
     return (
         <div className = "NewTransaction">
             <Navbar></Navbar>
-            <Header title='Trust: New Transaction'/>
-            <LinkButton linklabel = 'Home' link = '/home'/>
+            <h1>Hello</h1>
+            
       </div>
       )
   }
