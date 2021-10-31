@@ -21,7 +21,7 @@ export const SubMenuItems = [
 export const TrustSubMenuItems = [
     {
         title: 'New Transaction',
-        url: '/home',
+        url: '/newtransaction',
         cName: 'navItem'
     },
     {
