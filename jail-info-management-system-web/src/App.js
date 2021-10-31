@@ -6,7 +6,7 @@ import IdleContainer from './components/IdleContainer'
 import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
-import NewTransaction from './components/Transactions/NewTransactions'
+import NewTransaction from './components/Transactions/NewTransaction'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -39,7 +39,7 @@ import NewTransaction from './components/Transactions/NewTransactions'
             <BookingCreationPage/>
           </Route>
 
-          <Route exact path ='/trust/newtransaction'>
+          <Route exact path ='/newtransaction'>
             <NewTransaction/>
           </Route>
 
