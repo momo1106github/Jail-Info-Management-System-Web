@@ -6,6 +6,7 @@ import { useHistory, useParams } from 'react-router'
 import { useState } from 'react'
 import Dropdown from './Dropdown'
 import Header2 from './Header2'
+import PreInput from './PrefilledInput'
 //import Dropdown from './Dropdown'
 
 
@@ -75,7 +76,7 @@ const BookingCreationPage = () => {
   const [apartmentnumbertemp, setApartmentNumberTemp] = useState("");
   const [citytemp, setCityTemp] = useState("");
   const [statetemp, setStateTemp] = useState("");
-  const [zipCodetemp, setZipCodeTemp] = useState("");
+  const [zipcodetemp, setZipCodeTemp] = useState("");
   const [telephonenumbertemp, setTelephoneNumberTemp] = useState("");
 
 
@@ -97,7 +98,9 @@ const BookingCreationPage = () => {
   const [arrestcharges, setCharges] = useState("");
   const [arrestofficerid, setArrestingOfficerID] = useState("");
   const [transportofficerid, setTransportingOfficerID] = useState("");
+  const [searchingofficerid, setSearchingOfficerID] = useState("")
   const [deprepnum, setDepRepNum] = useState("");
+  
 
   //Vehicle Information
   const [driverslicensenumber, setDriversLicenseNumber] = useState("");
@@ -202,102 +205,103 @@ const BookingCreationPage = () => {
       <div className = 'bookingenterpage'>
 
       <Header2 title = 'Basic Information'/>
-      <Input inputlabel = 'First Name' onChange = {setFirstName}/>
-      <Input inputlabel = 'Middle Name' onChange = {setMiddleName}/>
-      <Input inputlabel = 'Last Name' onChange = {setLastName}/>
-      <Input inputlabel = 'Suffix' onChange = {setSuffix}/>
-      <Input inputlabel = 'AKA' onChange = {setAKA}/>
-      <Input inputlabel = 'Date of Birth' onChange = {setDOB}/>
-      <Input inputlabel = 'Age' onChange = {setAge}/>
-      <Input inputlabel = 'Place of Birth' onChange = {setPOB}/>
-      <Input inputlabel = 'Foreign National' onChange = {setForeignNational}/>
-      <Input inputlabel = 'Social Security Number' onChange = {setSSN}/>
+      <PreInput defaultvalue = {firstname} inputlabel = 'First Name' onChange = {setFirstName}/>
+      <PreInput defaultvalue = {middlename} inputlabel = 'Middle Name' onChange = {setMiddleName}/>
+      <PreInput defaultvalue = {lastname} inputlabel = 'Last Name' onChange = {setLastName}/>
+      <PreInput defaultvalue = {suffix} inputlabel = 'Suffix' onChange = {setSuffix}/>
+      <PreInput defaultvalue = {aka} inputlabel = 'AKA' onChange = {setAKA}/>
+      <PreInput defaultvalue = {dob} inputlabel = 'Date of Birth' onChange = {setDOB}/>
+      <PreInput defaultvalue = {age} inputlabel = 'Age' onChange = {setAge}/>
+      <PreInput defaultvalue = {placeofbirth} inputlabel = 'Place of Birth' onChange = {setPOB}/>
+      <PreInput defaultvalue = {foreignnational} inputlabel = 'Foreign National' onChange = {setForeignNational}/>
+      <PreInput defaultvalue = {ssn} inputlabel = 'Social Security Number' onChange = {setSSN}/>
 
       <Header2 title = 'Permanent Address'/>
-      <Input inputlabel = 'Street Address' onChange = {setStreetAddress}/>
-      <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumber}/>
-      <Input inputlabel = 'City' onChange = {setCity}/>
-      <Input inputlabel = 'State' onChange = {setState}/>
-      <Input inputlabel = 'ZipCode' onChange = {setZipCode}/>
-      <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumber}/>
+      <PreInput defaultvalue = {streetaddress} inputlabel = 'Street Address' onChange = {setStreetAddress}/>
+      <PreInput defaultvalue = {apartmentnumber} inputlabel = 'Apartment Number' onChange = {setApartmentNumber}/>
+      <PreInput defaultvalue = {city} inputlabel = 'City' onChange = {setCity}/>
+      <PreInput defaultvalue = {state} inputlabel = 'State' onChange = {setState}/>
+      <PreInput defaultvalue = {zipcode} inputlabel = 'ZipCode' onChange = {setZipCode}/>
+      <PreInput defaultvalue = {telephonenumber} inputlabel = 'Telephone Number' onChange = {setTelephoneNumber}/>
 
       <Header2 title = 'Temporary Address'/>
-      <Input inputlabel = 'Street Address' onChange = {setStreetAddressTemp}/>
-      <Input inputlabel = 'Apartment Number' onChange = {setApartmentNumberTemp}/>
-      <Input inputlabel = 'City' onChange = {setCityTemp}/>
-      <Input inputlabel = 'State' onChange = {setStateTemp}/>
-      <Input inputlabel = 'ZipCode' onChange = {setZipCodeTemp}/>
-      <Input inputlabel = 'Telephone Number' onChange = {setTelephoneNumberTemp}/>
+      <PreInput defaultvalue = {streetaddresstemp} inputlabel = 'Street Address' onChange = {setStreetAddressTemp}/>
+      <PreInput defaultvalue = {apartmentnumbertemp} inputlabel = 'Apartment Number' onChange = {setApartmentNumberTemp}/>
+      <PreInput defaultvalue = {citytemp} inputlabel = 'City' onChange = {setCityTemp}/>
+      <PreInput defaultvalue = {statetemp} inputlabel = 'State' onChange = {setStateTemp}/>
+      <PreInput defaultvalue = {zipcodetemp} inputlabel = 'ZipCode' onChange = {setZipCodeTemp}/>
+      <PreInput defaultvalue = {telephonenumbertemp} inputlabel = 'Telephone Number' onChange = {setTelephoneNumberTemp}/>
 
        
       <Header2 title = 'Inmate Physical Description'/>
-      <Input inputlabel = 'Sex' onChange = {setSex}/>
+      <PreInput defaultvalue = {sex} inputlabel = 'Sex' onChange = {setSex}/>
       <Dropdown setvalue = {setDescent} items = {defaultlist} title = 'Descent'/>
       <Dropdown setvalue = {setHairColor} items = {defaultlist} title = 'HairColor'/>
       <Dropdown setvalue = {setEyeColor} items = {defaultlist} title = 'EyeColor'/>
-      <Input inputlabel = 'Height' onChange = {setHeight}/>
-      <Input inputlabel = 'Weight' onChange = {setWeight}/>
+      <PreInput defaultvalue = {height} inputlabel = 'Height' onChange = {setHeight}/>
+      <PreInput defaultvalue = {weight} inputlabel = 'Weight' onChange = {setWeight}/>
       <Dropdown setvalue = {setSMT} items = {defaultlist} title = 'Scars, Marks and Tattoos'/>
       <Dropdown setvalue = {setSMTLoc} items = {defaultlist} title = 'Scars, Marks and Tattoos Locations'/>
-      <Input inputlabel = 'Unusual Scars, Marks and Tattoos' onChange = {setUnusualScarsMarksTattoos}/>
+      <PreInput defaultvalue = {unusualsmt} inputlabel = 'Unusual Scars, Marks and Tattoos' onChange = {setUnusualScarsMarksTattoos}/>
 
       <Header2 title = 'Arrest Details'/>
-      <Input inputlabel = 'Date and Time Arrested' onChange = {setDateTimeArrested}/>
-      <Input inputlabel = 'Arresting Agency' onChange = {setArrestingAgency}/>
+      <PreInput defaultvalue = {datetimearrested} inputlabel = 'Date and Time Arrested' onChange = {setDateTimeArrested}/>
+      <PreInput defaultvalue = {arrestingagency} inputlabel = 'Arresting Agency' onChange = {setArrestingAgency}/>
       <Dropdown setvalue = {setArrestLocation} items = {defaultlist} title = 'Arrest Location'/>
-      <Input inputlabel = 'Arrest Charge(s)' onChange = {setCharges}/>
-      <Input inputlabel = 'Arresting Officer Department ID' onChange = {setArrestingOfficerID}/>
-      <Input inputlabel = 'Transporting Officer Department ID' onChange = {setTransportingOfficerID}/>
+      <PreInput defaultvalue = {arrestcharges} inputlabel = 'Arrest Charge(s)' onChange = {setCharges}/>
+      <PreInput defaultvalue = {arrestofficerid} inputlabel = 'Arresting Officer Department ID' onChange = {setArrestingOfficerID}/>
+      <PreInput defaultvalue = {transportofficerid} inputlabel = 'Transporting Officer Department ID' onChange = {setTransportingOfficerID}/>
+      <PreInput defaultvalue = {searchingofficerid} inputlabel = 'Searching Officer Department ID' onChange = {setSearchingOfficerID}/>
 
       <Header2 title = 'Vehicle Information'/>
-      <Input inputlabel = 'Drivers License Number' onChange = {setDriversLicenseNumber}/>
-      <Input inputlabel = 'Drivers License State' onChange = {setDriversLicenseState}/>
-      <Input inputlabel = 'Vehicle License Number' onChange = {setVehicleLicenseNumber}/>
-      <Input inputlabel = 'Vehicle License State' onChange = {setVehicleLicenseState}/> 
-      <Input inputlabel = 'Vehicle Year' onChange = {setVehicleYear}/>
+      <PreInput defaultvalue = {driverslicensenumber} inputlabel = 'Drivers License Number' onChange = {setDriversLicenseNumber}/>
+      <PreInput defaultvalue = {driverslicensestate} inputlabel = 'Drivers License State' onChange = {setDriversLicenseState}/>
+      <PreInput defaultvalue = {vehiclelicensenumber} inputlabel = 'Vehicle License Number' onChange = {setVehicleLicenseNumber}/>
+      <PreInput defaultvalue = {vehiclelicensestate} inputlabel = 'Vehicle License State' onChange = {setVehicleLicenseState}/> 
+      <PreInput defaultvalue = {vehicleyear} inputlabel = 'Vehicle Year' onChange = {setVehicleYear}/>
       <Dropdown setvalue = {setVehicleMake} items = {defaultlist} title = 'Vehicle Make'/>
       <Dropdown setvalue = {setVehicleColor} items = {defaultlist} title = 'Vehicle Color'/>
-      <Input inputlabel = 'Vehicle Disposition' onChange = {setVehicleDisposition}/>
+      <PreInput defaultvalue = {vehicledisposition} inputlabel = 'Vehicle Disposition' onChange = {setVehicleDisposition}/>
       <Dropdown setvalue = {setImpoundCompany} items = {defaultlist} title = 'Impound Company'/>
-      <Input inputlabel = 'Parked-Location' onChange = {setParkedLocation}/>
-      <Input inputlabel = 'Parked-City' onChange = {setParkedCity}/>
-      <Input inputlabel = 'Parked-Other' onChange = {setParkedOther}/>
-      <Input inputlabel = 'Department Report Number' onChange = {setDepRepNum}/>
+      <PreInput defaultvalue = {parkedlocation} inputlabel = 'Parked-Location' onChange = {setParkedLocation}/>
+      <PreInput defaultvalue = {parkedcity} inputlabel = 'Parked-City' onChange = {setParkedCity}/>
+      <PreInput defaultvalue = {parkedother} inputlabel = 'Parked-Other' onChange = {setParkedOther}/>
+      <PreInput defaultvalue = {deprepnum} inputlabel = 'Department Report Number' onChange = {setDepRepNum}/>
 
       <Header2 title = 'Additional Inmate Information'/>
       <Dropdown setvalue = {setSpecialId} items = {defaultlist} title = 'Special Identifiers'/>
       <Dropdown setvalue = {setGangAffl} items = {defaultlist} title = 'Gang Affiliation'/>
-      <Input inputlabel = 'Gang Affiliation Unlisted' onChange = {setGangAffl}/>
-      <Input inputlabel = 'Gang Location' onChange = {setGangLoc}/>
+      <PreInput defaultvalue = {gangaffl} inputlabel = 'Gang Affiliation Unlisted' onChange = {setGangAffl}/>
+      <PreInput defaultvalue = {gangloc} inputlabel = 'Gang Location' onChange = {setGangLoc}/>
       <Dropdown setvalue = {setGangStatus} items = {gangstatuslist} title = 'Gang Membership Status'/>
       
       <Header2 title = 'Emergency Contact'/>
-      <Input inputlabel = 'First Name' onChange = {setEcFirstName}/>
-      <Input inputlabel = 'Middle Name' onChange = {setEcMiddleName}/>
-      <Input inputlabel = 'Last Name' onChange = {setEcLastName}/>
-      <Input inputlabel = 'Suffix' onChange = {setEcSuffix}/>
+      <PreInput defaultvalue = {ecfirstname} inputlabel = 'First Name' onChange = {setEcFirstName}/>
+      <PreInput defaultvalue = {ecmiddlename} inputlabel = 'Middle Name' onChange = {setEcMiddleName}/>
+      <PreInput defaultvalue = {eclastname} inputlabel = 'Last Name' onChange = {setEcLastName}/>
+      <PreInput defaultvalue = {suffix} inputlabel = 'Suffix' onChange = {setEcSuffix}/>
       <Dropdown setvalue = {setEcRelation} items = {defaultlist} title = 'Relationship to Inmate'/>
-      <Input inputlabel = 'Street Address' onChange = {setEcStreetAddress}/>
-      <Input inputlabel = 'Apartment Number' onChange = {setEcApartmentNumber}/>
-      <Input inputlabel = 'City' onChange = {setEcCity}/>
-      <Input inputlabel = 'State' onChange = {setEcState}/>
-      <Input inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
-      <Input inputlabel = 'Telephone Number' onChange = {setEcTelephoneNumber}/>
+      <PreInput defaultvalue = {ecstreetaddress} inputlabel = 'Street Address' onChange = {setEcStreetAddress}/>
+      <PreInput defaultvalue = {ecapartmentnumber} inputlabel = 'Apartment Number' onChange = {setEcApartmentNumber}/>
+      <PreInput defaultvalue = {eccity} inputlabel = 'City' onChange = {setEcCity}/>
+      <PreInput defaultvalue = {ecstate} inputlabel = 'State' onChange = {setEcState}/>
+      <PreInput defaultvalue = {eczipCode} inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
+      <PreInput defaultvalue = {ectelephonenumber} inputlabel = 'Telephone Number' onChange = {setEcTelephoneNumber}/>
 
       <Header2 title = 'Employment Information'/>
-      <Input inputlabel = 'Occupation' onChange = {setOccupation}/>
+      <PreInput defaultvalue = {occupation} inputlabel = 'Occupation' onChange = {setOccupation}/>
       <Dropdown setvalue = {setSkills} items = {defaultlist} title = 'Skills'/>
-      <Input inputlabel = 'Highest Grade Complete' onChange = {setHighGradeComp}/>
+      <PreInput defaultvalue = {highgradecomp} inputlabel = 'Highest Grade Complete' onChange = {setHighGradeComp}/>
       <Dropdown setvalue = {setAbDirection} items = {defaultlist} title = 'Abiility to Understand Directions in English'/>
-      <Input inputlabel = 'Employer' onChange = {setEmployer}/>
-      <Input inputlabel = 'Type of Business' onChange = {setBizType}/>
-      <Input inputlabel = 'Position' onChange = {setPosition}/>
-      <Input inputlabel = 'Street Address' onChange = {setEmStreetAddress}/>
-      <Input inputlabel = 'Suite Number' onChange = {setEmSuiteNumber}/>
-      <Input inputlabel = 'City' onChange = {setEmCity}/>
-      <Input inputlabel = 'State' onChange = {setEmState}/>
-      <Input inputlabel = 'ZipCode' onChange = {setEmZipCode}/>
-      <Input inputlabel = 'Telephone Number' onChange = {setEmTelephoneNumber}/>
+      <PreInput defaultvalue = {employer} inputlabel = 'Employer' onChange = {setEmployer}/>
+      <PreInput defaultvalue = {biztype} inputlabel = 'Type of Business' onChange = {setBizType}/>
+      <PreInput defaultvalue = {position} inputlabel = 'Position' onChange = {setPosition}/>
+      <PreInput defaultvalue = {emstreetaddress} inputlabel = 'Street Address' onChange = {setEmStreetAddress}/>
+      <PreInput defaultvalue = {emsuitenumber} inputlabel = 'Suite Number' onChange = {setEmSuiteNumber}/>
+      <PreInput defaultvalue = {emcity} inputlabel = 'City' onChange = {setEmCity}/>
+      <PreInput defaultvalue = {emstate} inputlabel = 'State' onChange = {setEmState}/>
+      <PreInput defaultvalue = {emzipCode} inputlabel = 'ZipCode' onChange = {setEmZipCode}/>
+      <PreInput defaultvalue = {emtelephonenumber} inputlabel = 'Telephone Number' onChange = {setEmTelephoneNumber}/>
 
       <Header2 title = 'Medical Information'/>
       <Dropdown setvalue = {setMedicalInfo} items = {medinfotestlist} title = 'Medical Information'/>
@@ -311,7 +315,7 @@ const BookingCreationPage = () => {
             <li key={medinfo.id}>{medinfo.desc}</li>
           ))}
         </ul>
-      <Input inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
+      <PreInput defaultvalue = {othermedicalinfo} inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
 
       <Dropdown setvalue = {setObservation} items = {medinfotestlist} title = 'Observations'/>
       <Button buttonlabel = 'Add Selected Observations' onClick ={()=>addObservation(observation)}/>
@@ -320,17 +324,17 @@ const BookingCreationPage = () => {
             <li key={obs.id}>{obs.desc}</li>
           ))}
         </ul>
-      <Input inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
+      <PreInput defaultvalue = {otherobservations} inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
 
       <Header2 title = 'Required Separation of Inmate'/>
-      <Input inputlabel = '' onChange = {setReqSepInmate}/>
+      <PreInput defaultvalue = {reqsepinmate} inputlabel = '' onChange = {setReqSepInmate}/>
 
       <Header2 title = 'Comments'/>
-      <Input inputlabel = '' onChange = {setComments}/>
+      <PreInput defaultvalue = {comments} inputlabel = '' onChange = {setComments}/>
 
       <Header2 title = 'Manual Overrides'/>
-      <Input inputlabel = 'Manual Bail' onChange = {setBail}/>
-      <Input inputlabel = 'Set Sentence' onChange = {setSentence}/>
+      <PreInput defaultvalue = {bail} inputlabel = 'Manual Bail' onChange = {setBail}/>
+      <PreInput defaultvalue = {sentence} inputlabel = 'Set Sentence' onChange = {setSentence}/>
       
       </div>}
 
@@ -361,7 +365,7 @@ const BookingCreationPage = () => {
             <label className = 'BookingReceiptTitle'>Temporary Address</label>
             <pre className = 'BookingReceiptText'>{`
              Street Address: ${streetaddresstemp}
-             Apartment Number: ${apartmentnumbertemp}  City: ${citytemp} State: ${statetemp} Zipcode: ${zipcode}
+             Apartment Number: ${apartmentnumbertemp}  City: ${citytemp} State: ${statetemp} Zipcode: ${zipcodetemp}
              Telephone Number: ${telephonenumbertemp}
              `}</pre></div>}
 
