@@ -18,20 +18,10 @@ const BookingCreationPage = ({bookingclerkid}) => {
 
   //Buttons are used to proceed forward and backward through the booking process
   const history = useHistory();
-  const confirmInput = () =>{
-    if(ValidateInput()){
-      //Once input is validated calculate bail if not manually entered, and sentencing if entered
-      //Sentencing might be included in separate component since it will likely be used at other points in time than during booking as well
-      history.push('/bookingcreate/'+(parseInt(pg)+1))
-    }
-    else{
-      //alert
-    }
-  }
 
   //Outdated
   const back = () =>{
-    history.push('/bookingcreate/'+(parseInt(pg)-1))
+    history.push('/bookingcreate/1')
   }
 
 
@@ -110,7 +100,8 @@ const BookingCreationPage = ({bookingclerkid}) => {
   const [datetimearrested, setDateTimeArrested] = useState("");
   const [arrestingagency, setArrestingAgency] = useState("");
   const [arrestlocation, setArrestLocation] = useState("");
-  const [arrestcharges, setCharges] = useState("");
+  const [charge, setCharge] = useState("")
+  const [chargelist, setChargelist] = useState([]);
   const [arrestofficerid, setArrestingOfficerID] = useState("");
   const [transportofficerid, setTransportingOfficerID] = useState("");
   const [searchingofficerid, setSearchingOfficerID] = useState("")
@@ -189,11 +180,42 @@ const BookingCreationPage = ({bookingclerkid}) => {
   const [idgen, setIdGen] = useState(0);
 
   //Automatically Calculate Vars
+  const [bookingid, setBookingId] = useState("")
+  const [bookingtime, setBookingTime] = useState("");
   //TODO get Automatically computed vars
-  //Allow for list inputs for certain inputs like smts, smt locs, medicalinfo, obs,
 
+  //Confirms that entered input is valid
+  //If input is valid, sets the booking time and proceeds to booking reciept
+  const confirmInput = () =>{
+    if(ValidateInput()){
+      //Once input is validated calculate bail if not manually entered, and sentencing if entered
+      //Sentencing might be included in separate component since it will likely be used at other points in time than during booking as well
+      setBookingTime(Date().toLocaleString());
+      history.push('/bookingcreate/'+(parseInt(pg)+1));
+    }
+    else{
+      //alert
+    }
+  }
+
+  //clear all input fields here
+  const ClearInput = () =>{
+
+  }
   const ValidateInput = () =>{
     return true;
+  }
+
+  //Send Booking Record to Database Here
+  const ConfirmBooking = ()  =>{
+    //send data
+    //get back booking id
+  }
+
+//Used to create a new booking right after finishing one
+  const NextBooking = () =>{
+    ClearInput();
+    back();
   }
 
   const addMedInfo = (medinfo, docname, docphone, ispreg) => {
@@ -244,6 +266,7 @@ const BookingCreationPage = ({bookingclerkid}) => {
       {parseInt(pg)===1 &&
       <div className = 'bookingenterpage'>
 
+      <Button buttonlabel = 'Clear All Input' onClick = {ClearInput}/>
       <Header2 title = 'Basic Information'/>
       <PreInput defaultvalue = {firstname} inputlabel = 'First Name' onChange = {setFirstName}/>
       <PreInput defaultvalue = {middlename} inputlabel = 'Middle Name' onChange = {setMiddleName}/>
@@ -293,7 +316,12 @@ const BookingCreationPage = ({bookingclerkid}) => {
       <PreInput defaultvalue = {datetimearrested} inputlabel = 'Date and Time Arrested' onChange = {setDateTimeArrested}/>
       <PreInput defaultvalue = {arrestingagency} inputlabel = 'Arresting Agency' onChange = {setArrestingAgency}/>
       <Dropdown setvalue = {setArrestLocation} items = {defaultlist} title = 'Arrest Location'/>
-      <PreInput defaultvalue = {arrestcharges} inputlabel = 'Arrest Charge(s)' onChange = {setCharges}/>
+      <PreInput defaultvalue = {charge} inputlabel = 'New Arrest Charge' onChange = {setCharge}/>
+      <Button buttonlabel = 'Add Charge' onClick ={()=>addListItem(charge,chargelist, setChargelist)}/>
+     
+     {chargelist.map((mycharge) => (
+       <BookingListItem key= {mycharge.id} label={mycharge.desc} onClick={()=>removeListItem(mycharge.id ,chargelist, setChargelist)}/> 
+     ))}
       <PreInput defaultvalue = {arrestofficerid} inputlabel = 'Arresting Officer Department ID' onChange = {setArrestingOfficerID}/>
       <PreInput defaultvalue = {transportofficerid} inputlabel = 'Transporting Officer Department ID' onChange = {setTransportingOfficerID}/>
       <PreInput defaultvalue = {searchingofficerid} inputlabel = 'Searching Officer Department ID' onChange = {setSearchingOfficerID}/>
@@ -381,13 +409,15 @@ const BookingCreationPage = ({bookingclerkid}) => {
       <PreInput defaultvalue = {bail} inputlabel = 'Manual Bail' onChange = {setBail}/>
       <PreInput defaultvalue = {sentence} inputlabel = 'Set Sentence' onChange = {setSentence}/>
       
+      <Button buttonlabel = 'Confirm Input' onClick = {confirmInput}/>
       </div>}
 
       {parseInt(pg)===2 &&
       <div className = 'BookingReceiptPage'>
            <Header2 title='Booking Receipt'/>
-           <h3>Booking ID:(Will be generated and shown when booking is finalized)</h3>
-           <h3>Booking Clerk ID: {bookingclerkid}</h3>
+           <label>Booking ID:(Will be generated once Booking is Finalized)</label><br/>
+           <label>Booking Clerk ID: {bookingclerkid}</label><br/>
+           <label>Time Booked at: {bookingtime}</label><br/>
            <div className = 'BookingReceiptBasicInfo'>
            <label className = 'BookingReceiptTitle'>Basic Information</label>
            <pre className = 'BookingReceiptText'>{`
@@ -430,10 +460,10 @@ const BookingCreationPage = ({bookingclerkid}) => {
             <label className = 'BookingReceiptTitle'>Arrest Details</label>
             <pre className = 'BookingReceiptText'>{`
              Date and Time Arrested: ${datetimearrested}  Arresting Agency: ${arrestingagency}  Arrest Location: ${arrestlocation}
-             Charges: Charges need to Be Added`}</pre>
-            {smtlist.map((mysmt) => (
-            <pre key= {mysmt.id} >{`
-            ${mysmt.desc}`}</pre>
+             Charges:`}</pre>
+            {chargelist.map((mycharge) => (
+            <pre key= {mycharge.id} >{`
+            ${mycharge.desc}`}</pre>
           ))}
             <pre className = 'BookingReceiptText'>{`
              Arresting Officer Department ID: ${arrestofficerid}  Transporting Officer Department ID: ${transportofficerid}
@@ -508,31 +538,16 @@ const BookingCreationPage = ({bookingclerkid}) => {
             <label className = 'BookingReceiptTitle'>Comments</label>
             <pre className = 'BookingReceiptText'>{`
             ${comments}
-             `}</pre></div>
+             `}</pre></div>  
 
-<div className = 'BookingReceiptRequiredSeparation'>
-            <label className = 'BookingReceiptTitle'>Required Separation of Inmates</label>
-            <pre className = 'BookingReceiptText'>{`
-            ${reqsepinmate}
-             `}</pre></div>
-
-
-
-
-
-
-             
-
-
-           
+      <div className = 'BookingReceiptButtons'>
+      <Button buttonlabel = 'Back' onClick = {back}/>
+      {bookingid ? <Button buttonlabel= 'Create Another Booking?' onClick = {NextBooking}/> : <Button buttonlabel = 'Finalize Booking' onClick = {ConfirmBooking}/>}
+      </div>
 
       </div>
       }
-    
-
-      <LinkButton linklabel = 'Logout' link = '/'/>
-      {parseInt(pg) == 1 && <div><Button buttonlabel = 'Confirm Input' onClick = {confirmInput}/></div>}
-      {parseInt(pg) >= 2 && <div><Button buttonlabel = 'Back' onClick = {back}/></div>}
+      <LinkButton linklabel = 'Home' link = '/home'/>
       </div>
     )
 }
