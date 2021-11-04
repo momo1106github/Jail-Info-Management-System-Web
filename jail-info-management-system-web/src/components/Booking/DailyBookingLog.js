@@ -1,36 +1,32 @@
 import Header from '../Header'
-import LinkButton from '../LinkButton'
-import Button from '../Button'
-import { useHistory } from 'react-router'
-import { useState } from 'react'
-import Dropdown from './Dropdown'
-import Header2 from '../Header2'
-//import Dropdown from './Dropdown'
 
-
-//Displays the Booking creation pages
+//Displays the Daily Booking Log
 const DailyBookingLog = () => {
-  //Buttons are used to proceed forward and backward through the booking process
-  const history = useHistory();
 
-  //default values to be replaced, for user-defined lists
-  const defaultlist = [
-    {value: 'male'},
-    {value: 'female'},
-    {value: 'other'}
+
+  //default values to be replaced, for Data Fetched from server
+  const inmatelist = [
+    {bookingid:'213123', firstname: 'Thomas', middlename: "Edwards", lastname: "Stevens", suffix:"jr.",
+     bookingtime:"1/2/19 7:00PM", arrestingagency: "Station 1", arrestlocation:"New Jersey",
+    dateofbirth: "1/1/95", sex:"Male", descent: "Caucasian", documentnumber: "124214", charges:"Assault, Robbery" },
+    {bookingid:'2133213', firstname: 'Mary', middlename: "Edwards", lastname: "Stevens", suffix:"jr.",
+    bookingtime:"1/2/19 7:00PM", arrestingagency: "Station 1", arrestlocation:"New Jersey",
+   dateofbirth: "1/1/95", sex:"Female", descent: "Caucasian", documentnumber: "124214", charges:"Assault, Robbery" }
+    
   ]
 
   return (
-    <div className= 'Dropdown'>
-       <label>{title}</label>
-       <select onChange = {handleSelect}>
-       <option id = 'defaultoption'>Please Select an Option</option>
-       {items.map((item) => (
-        <option key = {item.value} value={item.value}>{item.value}</option>
+    <div className= 'DailyBookingLog'>
+       <Header title = "Daily Booking Log"/>
+       {inmatelist.map((inmate) => (
+        <div clasName="DailyBookingLogEntry" key = {inmate.bookingid}>
+          <pre className = "DailyBookingLogEntryText">{`
+          Inmate Name: ${inmate.firstname} ${inmate.middlename} ${inmate.lastname} ${inmate.suffix}  Date of Birth: ${inmate.dateofbirth}  Sex: ${inmate.sex}  Descent: ${inmate.descent}
+          Booking ID: ${inmate.bookingid}    Booking Time: ${inmate.bookingtime}   Arresting Agency: ${inmate.arrestingagency}   Arrest Location: ${inmate.arrestlocation}
+          Document Number: ${inmate.documentnumber}  Charges: ${inmate.charges}`}</pre>
+        </div>
       ))}
         
-       </select>
-    
     </div>)
 }
 export default DailyBookingLog
