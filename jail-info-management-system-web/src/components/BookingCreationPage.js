@@ -472,10 +472,50 @@ const BookingCreationPage = ({bookingclerkid}) => {
              Occupation: ${occupation}  Skills: ${skills}  Highest Grade Complete: ${highgradecomp}  Ability to Understand Directions in English: ${abdirection} 
              Employer: ${employer}  Business Type: ${biztype}  Position: ${position}
              Street Address: ${emstreetaddress}
-             Suite Number: ${emsuitenumber}  City: ${emcity} State: ${emstate} Zipcode: ${emzipcode}
+             Suite Number: ${emsuitenumber}  City: ${emcity} State: ${emstate} Zipcode: ${emzipCode}
              Telephone Number: ${emtelephonenumber} 
              `}</pre>
              </div>
+             
+             <div className = 'BookingReceiptMedicalInfo'>
+            <label className = 'BookingReceiptTitle'>Medical Information</label>
+            <pre>{`
+            Medical Information List`}</pre>
+            {medinfolist.map((medinfo) => (
+            <pre key= {medinfo.id} >{`
+            ${medinfo.desc}`}</pre>
+          ))}
+            <pre>{`
+            Other Medical Information: ${othermedicalinfo}
+
+            Observation List`}</pre>
+            {observationlist.map((obs) => (
+            <pre key= {obs.id} >{`
+            ${obs.desc}`}</pre>
+          ))}
+            <pre>{`
+            Other Observations: ${otherobservations}
+            `}</pre>
+             </div>
+
+            <div className = 'BookingReceiptRequiredSeparation'>
+            <label className = 'BookingReceiptTitle'>Required Separation of Inmates</label>
+            <pre className = 'BookingReceiptText'>{`
+            ${reqsepinmate}
+             `}</pre></div>
+
+            <div className = 'BookingReceiptComments'>
+            <label className = 'BookingReceiptTitle'>Comments</label>
+            <pre className = 'BookingReceiptText'>{`
+            ${comments}
+             `}</pre></div>
+
+<div className = 'BookingReceiptRequiredSeparation'>
+            <label className = 'BookingReceiptTitle'>Required Separation of Inmates</label>
+            <pre className = 'BookingReceiptText'>{`
+            ${reqsepinmate}
+             `}</pre></div>
+
 
 
 
