@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Dropdown from './Dropdown'
 import Header2 from './Header2'
 import PreInput from './PrefilledInput'
+import BookingListItem from './BookingListItem'
 //import Dropdown from './Dropdown'
 
 
@@ -33,6 +34,7 @@ const BookingCreationPage = () => {
     history.push('/bookingcreate/'+(parseInt(pg)-1))
   }
 
+
   //default values to be replaced, for user-defined lists
   const defaultlist = [
     {value: 'male'},
@@ -44,6 +46,18 @@ const BookingCreationPage = () => {
     {value: 'Doctor'},
     {value: 'Pregnant'}
   ]
+
+  const smtlist = [
+    {value: 'Butterfly'},
+    {value: 'Cross'},
+    {value: 'Birthmark'}
+  ]
+  const smtloclist = [
+    {value: 'Leg'},
+    {value: 'Face'},
+    {value: 'Back'}
+  ]
+
   const gangstatuslist = [
     {value: 'active'},
     {value: 'associate'},
@@ -87,7 +101,7 @@ const BookingCreationPage = () => {
   const [eyecolor, setEyeColor] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [smt, setSMT] = useState("")
+  const [smt, setSMT] = useState([])
   const [smtloc, setSMTLoc] = useState("")
   const [unusualsmt, setUnusualScarsMarksTattoos] = useState("");
 
@@ -171,6 +185,7 @@ const BookingCreationPage = () => {
   //Manual Overrides
   const [bail, setBail] = useState("");
   const [sentence, setSentence] = useState("");
+  const [idgen, setIdGen] = useState(0);
 
   //Automatically Calculate Vars
   //TODO get Automatically computed vars
@@ -191,8 +206,16 @@ const BookingCreationPage = () => {
     }
   }
 
-  const addObservation = (obs)=>{
-    setObservationlist(observationlist.concat({id:observationlist.length, desc:obs}))
+  const addListItem = (item,list,setfunc)=>{
+    if(item===''||item=='Please Select an Option'){
+      return;
+    }
+    setfunc(list.concat({id:idgen, desc:item}));
+    setIdGen(idgen+1);
+  }
+
+  const removeListItem = (id, list, setfunc)=>{
+    setfunc(list.filter((obj)=>obj.id!==id))
   }
 
   //In our output we check which page we are currently on and display that page
@@ -318,12 +341,12 @@ const BookingCreationPage = () => {
       <PreInput defaultvalue = {othermedicalinfo} inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
 
       <Dropdown setvalue = {setObservation} items = {medinfotestlist} title = 'Observations'/>
-      <Button buttonlabel = 'Add Selected Observations' onClick ={()=>addObservation(observation)}/>
-      <ul>
+      <Button buttonlabel = 'Add Selected Observations' onClick ={()=>addListItem(observation,observationlist, setObservationlist)}/>
+     
           {observationlist.map((obs) => (
-            <li key={obs.id}>{obs.desc}</li>
+            <BookingListItem key= {obs.id} label={obs.desc} onClick={()=>removeListItem(obs.id ,observationlist, setObservationlist)}/> 
           ))}
-        </ul>
+        
       <PreInput defaultvalue = {otherobservations} inputlabel = 'Other Observations' onChange = {setOtherObservations}/>
 
       <Header2 title = 'Required Separation of Inmate'/>
@@ -357,7 +380,6 @@ const BookingCreationPage = () => {
              Street Address: ${streetaddress}
              Apartment Number: ${apartmentnumber}  City: ${city} State: ${state} Zipcode: ${zipcode}
              Telephone Number: ${telephonenumber}
-
              `}</pre></div>
 
             {streetaddresstemp&&
@@ -368,6 +390,15 @@ const BookingCreationPage = () => {
              Apartment Number: ${apartmentnumbertemp}  City: ${citytemp} State: ${statetemp} Zipcode: ${zipcodetemp}
              Telephone Number: ${telephonenumbertemp}
              `}</pre></div>}
+
+            <div className = 'BookingReceiptPhysicalDescription'>
+            <label className = 'BookingReceiptTitle'>Temporary Address</label>
+            <pre className = 'BookingReceiptText'>{`
+             Sex: ${sex}  Descent: ${descent}  Hair Color: ${haircolor}  Eye Color: ${eyecolor}  Height: ${height}
+             `}</pre>
+             
+             </div>
+
 
            
 
