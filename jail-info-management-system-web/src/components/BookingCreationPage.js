@@ -147,7 +147,7 @@ const BookingCreationPage = () => {
   const [ecapartmentnumber, setEcApartmentNumber] = useState("");
   const [eccity, setEcCity] = useState("");
   const [ecstate, setEcState] = useState("");
-  const [eczipCode, setEcZipCode] = useState("");
+  const [eczipcode, setEcZipCode] = useState("");
   const [ectelephonenumber, setEcTelephoneNumber] = useState("");
 
   //Employment Information
@@ -330,7 +330,7 @@ const BookingCreationPage = () => {
       <PreInput defaultvalue = {ecapartmentnumber} inputlabel = 'Apartment Number' onChange = {setEcApartmentNumber}/>
       <PreInput defaultvalue = {eccity} inputlabel = 'City' onChange = {setEcCity}/>
       <PreInput defaultvalue = {ecstate} inputlabel = 'State' onChange = {setEcState}/>
-      <PreInput defaultvalue = {eczipCode} inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
+      <PreInput defaultvalue = {eczipcode} inputlabel = 'ZipCode' onChange = {setEcZipCode}/>
       <PreInput defaultvalue = {ectelephonenumber} inputlabel = 'Telephone Number' onChange = {setEcTelephoneNumber}/>
 
       <Header2 title = 'Employment Information'/>
@@ -386,13 +386,14 @@ const BookingCreationPage = () => {
       {parseInt(pg)===2 &&
       <div className = 'BookingReceiptPage'>
            <Header2 title='Booking Receipt'/>
+           <h3>Booking ID:(Will be generated and shown when booking is finalized)</h3>
+           <h3>Booking Clerk ID</h3>
            <div className = 'BookingReceiptBasicInfo'>
            <label className = 'BookingReceiptTitle'>Basic Information</label>
            <pre className = 'BookingReceiptText'>{`
              First Name: ${firstname}  Middle Name: ${middlename}  Last name: ${lastname}  Suffix: ${suffix}
              Also Known As: ${aka} Date of Birth: ${dob} Age: ${age} 
-             Place of Birth: ${placeofbirth} Foriegn National: ${foreignnational} Social Security Number: ${ssn}
-
+             Place of Birth: ${placeofbirth} Foreign National: ${foreignnational} Social Security Number: ${ssn}
              `}</pre>
              </div>
 
@@ -414,12 +415,60 @@ const BookingCreationPage = () => {
              `}</pre></div>}
 
             <div className = 'BookingReceiptPhysicalDescription'>
-            <label className = 'BookingReceiptTitle'>Temporary Address</label>
+            <label className = 'BookingReceiptTitle'>Physical Description</label>
             <pre className = 'BookingReceiptText'>{`
              Sex: ${sex}  Descent: ${descent}  Hair Color: ${haircolor}  Eye Color: ${eyecolor}  Height: ${height}
-             `}</pre>
-             
+             Scars Marks and Tattoos:`}</pre>
+            {smtlist.map((mysmt) => (
+            <BookingListItem key= {mysmt.id} label={mysmt.desc} onClick={()=>removeListItem(mysmt.id ,smtlist, setSMTList)}/> 
+          ))}
+            <pre className = 'BookingReceiptText'>{`Unusual Scars Marks and Tattoos: ${unusualsmt}`}</pre>
              </div>
+
+             <div className = 'BookingReceiptArrestDetails'>
+            <label className = 'BookingReceiptTitle'>Arrest Details</label>
+            <pre className = 'BookingReceiptText'>{`
+             Date and Time Arrested: ${datetimearrested}  Arresting Agency: ${arrestingagency}  Arrest Location: ${arrestlocation}
+             Charges:`}</pre>
+            {smtlist.map((mysmt) => (
+            <BookingListItem key= {mysmt.id} label={mysmt.desc} onClick={()=>removeListItem(mysmt.id ,smtlist, setSMTList)}/> 
+          ))}
+            <pre className = 'BookingReceiptText'>{`
+             Arresting Officer Department ID: ${arrestofficerid}  Transporting Officer Department ID: ${transportofficerid}
+             Searching Officer Department ID: ${searchingofficerid}  Department Report Number: ${deprepnum}
+             `}</pre>
+             </div>
+
+             {driverslicensenumber&&
+            <div className = 'BookingReceiptVehicleInformation'>
+            <label className = 'BookingReceiptTitle'>Vehicle Information</label>
+            <pre className = 'BookingReceiptText'>{`
+             Drivers License Number: ${driverslicensenumber}  Drivers License State: ${driverslicensestate}  Vehicle License Number: ${vehiclelicensenumber} Vehicle License State: ${vehiclelicensestate} 
+             Vehicle Year: ${vehicleyear}  Vehicle Make: ${vehiclemake}  Vehicle Color: ${vehiclecolor}  Vehicle Disposition: ${vehicledisposition}
+             Impound Company: ${impoundcompany}  Parked Location: ${parkedlocation} Parked City: ${parkedcity}  Parked Other: ${parkedother}
+             `}</pre></div>}
+    
+            <div className = 'BookingReceiptAdditionalInmateInformation'>
+            <label className = 'BookingReceiptTitle'>Additional Inmate Information</label>
+            <pre className = 'BookingReceiptText'>{`
+             Special Identifiers: ${specialid}  Gang Affiliation: ${gangaffl} Gang Location: ${gangloc} Membership Status: ${gangstatus}
+             `}</pre></div>
+
+           <div className = 'BookingReceiptEmergencyContact'>
+           <label className = 'BookingReceiptTitle'>Emergency Contact</label>
+           <pre className = 'BookingReceiptText'>{`
+             First Name: ${ecfirstname}  Middle Name: ${ecmiddlename}  Last name: ${eclastname}  Suffix: ${ecsuffix} Relation: ${ecrelation}
+             Street Address: ${ecstreetaddress}
+             Apartment Number: ${ecapartmentnumber}  City: ${eccity} State: ${ecstate} Zipcode: ${eczipcode}
+             Telephone Number: ${ectelephonenumber} 
+             `}</pre>
+             </div>
+
+
+
+
+
+             
 
 
            
