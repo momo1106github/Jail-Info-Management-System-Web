@@ -196,14 +196,18 @@ const BookingCreationPage = () => {
   }
 
   const addMedInfo = (medinfo, docname, docphone, ispreg) => {
+    if(medinfo===''||medinfo=='Please Select an Option'){
+      return;
+    }
     if(medinfo == "Doctor"){
-      setMedInfoList(medinfolist.concat({id: medinfolist.length, desc: `${medinfo}: ${docname} Phone: ${docphone}`, value: medinfo, docname: docname, docphone:docphone}));
-      console.log('doctor detected');
+      setMedInfoList(medinfolist.concat({id: idgen, desc: `${medinfo}: ${docname} Phone: ${docphone}`, value: medinfo, docname: docname, docphone:docphone}));
     }
 
     else{
-      setMedInfoList(medinfolist.concat({id: medinfolist.length, desc: medinfo, value:medinfo}));
+      setMedInfoList(medinfolist.concat({id: idgen, desc: medinfo, value:medinfo}));
     }
+
+    setIdGen(idgen+1);
   }
 
   const addListItem = (item,list,setfunc)=>{
@@ -335,7 +339,7 @@ const BookingCreationPage = () => {
       <Button buttonlabel = 'Add Selected Medical Information' onClick ={()=>addMedInfo(medicalinfo,doctorname, doctorphone, ispregnant)}/>
       <ul>
           {medinfolist.map((medinfo) => (
-            <li key={medinfo.id}>{medinfo.desc}</li>
+            <BookingListItem key={medinfo.id} label = {medinfo.desc} onClick = {()=>removeListItem(medinfo.id,medinfolist,setMedInfoList)}/>
           ))}
         </ul>
       <PreInput defaultvalue = {othermedicalinfo} inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
