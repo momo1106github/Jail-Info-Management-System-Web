@@ -12,7 +12,7 @@ import BookingListItem from './BookingListItem'
 
 
 //Displays the Booking creation pages
-const BookingCreationPage = () => {
+const BookingCreationPage = ({bookingclerkid}) => {
   //The pg param is used to track what page the booking is currently in
   const {pg} = useParams();
 
@@ -387,7 +387,7 @@ const BookingCreationPage = () => {
       <div className = 'BookingReceiptPage'>
            <Header2 title='Booking Receipt'/>
            <h3>Booking ID:(Will be generated and shown when booking is finalized)</h3>
-           <h3>Booking Clerk ID</h3>
+           <h3>Booking Clerk ID: {bookingclerkid}</h3>
            <div className = 'BookingReceiptBasicInfo'>
            <label className = 'BookingReceiptTitle'>Basic Information</label>
            <pre className = 'BookingReceiptText'>{`
@@ -420,7 +420,8 @@ const BookingCreationPage = () => {
              Sex: ${sex}  Descent: ${descent}  Hair Color: ${haircolor}  Eye Color: ${eyecolor}  Height: ${height}
              Scars Marks and Tattoos:`}</pre>
             {smtlist.map((mysmt) => (
-            <BookingListItem key= {mysmt.id} label={mysmt.desc} onClick={()=>removeListItem(mysmt.id ,smtlist, setSMTList)}/> 
+            <pre key= {mysmt.id} >{`
+            ${mysmt.desc}`}</pre>
           ))}
             <pre className = 'BookingReceiptText'>{`Unusual Scars Marks and Tattoos: ${unusualsmt}`}</pre>
              </div>
@@ -429,9 +430,10 @@ const BookingCreationPage = () => {
             <label className = 'BookingReceiptTitle'>Arrest Details</label>
             <pre className = 'BookingReceiptText'>{`
              Date and Time Arrested: ${datetimearrested}  Arresting Agency: ${arrestingagency}  Arrest Location: ${arrestlocation}
-             Charges:`}</pre>
+             Charges: Charges need to Be Added`}</pre>
             {smtlist.map((mysmt) => (
-            <BookingListItem key= {mysmt.id} label={mysmt.desc} onClick={()=>removeListItem(mysmt.id ,smtlist, setSMTList)}/> 
+            <pre key= {mysmt.id} >{`
+            ${mysmt.desc}`}</pre>
           ))}
             <pre className = 'BookingReceiptText'>{`
              Arresting Officer Department ID: ${arrestofficerid}  Transporting Officer Department ID: ${transportofficerid}
@@ -461,6 +463,17 @@ const BookingCreationPage = () => {
              Street Address: ${ecstreetaddress}
              Apartment Number: ${ecapartmentnumber}  City: ${eccity} State: ${ecstate} Zipcode: ${eczipcode}
              Telephone Number: ${ectelephonenumber} 
+             `}</pre>
+             </div>
+
+           <div className = 'BookingReceiptEmploymentInformation'>
+           <label className = 'BookingReceiptTitle'>Employment Information</label>
+           <pre className = 'BookingReceiptText'>{`
+             Occupation: ${occupation}  Skills: ${skills}  Highest Grade Complete: ${highgradecomp}  Ability to Understand Directions in English: ${abdirection} 
+             Employer: ${employer}  Business Type: ${biztype}  Position: ${position}
+             Street Address: ${emstreetaddress}
+             Suite Number: ${emsuitenumber}  City: ${emcity} State: ${emstate} Zipcode: ${emzipcode}
+             Telephone Number: ${emtelephonenumber} 
              `}</pre>
              </div>
 

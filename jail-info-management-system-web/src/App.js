@@ -24,10 +24,11 @@ import { useState } from 'react'
      <div className="App">
        <IdleContainer timeoutfunction = {logout}></IdleContainer>
        <Redirect departmentid = {departmentid} role = {privilege} desturl = {"/"}/>
+       
 
        <div className = "Page Container">
          <Switch>
-          
+  
           <Route exact path ="/">
             <LoginPage setview = {setPrivilege} setdeptid = {setDepartmentId}/>
           </Route>
@@ -37,7 +38,7 @@ import { useState } from 'react'
           </Route>
 
           <Route exact path ='/bookingcreate/:pg'>
-            <BookingCreationPage/>
+            <BookingCreationPage bookingclerkid = {departmentid}/>
           </Route>
 
         </Switch>
