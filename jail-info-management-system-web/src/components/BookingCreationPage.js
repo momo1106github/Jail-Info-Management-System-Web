@@ -47,7 +47,7 @@ const BookingCreationPage = () => {
     {value: 'Pregnant'}
   ]
 
-  const smtlist = [
+  const defsmtlist = [
     {value: 'Butterfly'},
     {value: 'Cross'},
     {value: 'Birthmark'}
@@ -101,7 +101,8 @@ const BookingCreationPage = () => {
   const [eyecolor, setEyeColor] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [smt, setSMT] = useState([])
+  const [smtlist, setSMTList] = useState([])
+  const [smt, setSMT] = useState("")
   const [smtloc, setSMTLoc] = useState("")
   const [unusualsmt, setUnusualScarsMarksTattoos] = useState("");
 
@@ -210,6 +211,18 @@ const BookingCreationPage = () => {
     setIdGen(idgen+1);
   }
 
+  const addSMT = (mysmt, mysmtloc) => {
+    if(mysmt===''||mysmt=='Please Select an Option'){
+      return;
+    }
+    if(mysmtloc===''||mysmtloc=='Please Select an Option'){
+      return;
+    }
+      setSMTList(smtlist.concat({id: idgen, desc: `${mysmt} : ${mysmtloc}`, value:{mysmt}, loc:{mysmtloc}}));
+    
+    setIdGen(idgen+1);
+  }
+
   const addListItem = (item,list,setfunc)=>{
     if(item===''||item=='Please Select an Option'){
       return;
@@ -267,8 +280,13 @@ const BookingCreationPage = () => {
       <Dropdown setvalue = {setEyeColor} items = {defaultlist} title = 'EyeColor'/>
       <PreInput defaultvalue = {height} inputlabel = 'Height' onChange = {setHeight}/>
       <PreInput defaultvalue = {weight} inputlabel = 'Weight' onChange = {setWeight}/>
-      <Dropdown setvalue = {setSMT} items = {defaultlist} title = 'Scars, Marks and Tattoos'/>
-      <Dropdown setvalue = {setSMTLoc} items = {defaultlist} title = 'Scars, Marks and Tattoos Locations'/>
+      <Dropdown setvalue = {setSMT} items = {defsmtlist} title = 'Scars, Marks and Tattoos'/>
+      <Dropdown setvalue = {setSMTLoc} items = {smtloclist} title = 'Scars, Marks and Tattoos Locations'/>
+      <Button buttonlabel = 'Add Scar Mark or Tatto' onClick ={()=>addSMT(smt,smtloc)}/>
+     
+          {smtlist.map((mysmt) => (
+            <BookingListItem key= {mysmt.id} label={mysmt.desc} onClick={()=>removeListItem(mysmt.id ,smtlist, setSMTList)}/> 
+          ))}
       <PreInput defaultvalue = {unusualsmt} inputlabel = 'Unusual Scars, Marks and Tattoos' onChange = {setUnusualScarsMarksTattoos}/>
 
       <Header2 title = 'Arrest Details'/>
@@ -337,11 +355,11 @@ const BookingCreationPage = () => {
         <Input inputlabel = 'Telephone' onChange = {setDoctorPhone}/>
         </div>}
       <Button buttonlabel = 'Add Selected Medical Information' onClick ={()=>addMedInfo(medicalinfo,doctorname, doctorphone, ispregnant)}/>
-      <ul>
+      
           {medinfolist.map((medinfo) => (
             <BookingListItem key={medinfo.id} label = {medinfo.desc} onClick = {()=>removeListItem(medinfo.id,medinfolist,setMedInfoList)}/>
           ))}
-        </ul>
+        
       <PreInput defaultvalue = {othermedicalinfo} inputlabel = 'Other Medical Information' onChange = {setOtherMedicalInfo}/>
 
       <Dropdown setvalue = {setObservation} items = {medinfotestlist} title = 'Observations'/>
