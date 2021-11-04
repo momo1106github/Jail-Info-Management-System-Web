@@ -1,7 +1,7 @@
 import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
-import BookingCreationPage from './components/BookingCreationPage'
+import BookingCreationPage from './components/Booking/BookingCreationPage'
 import IdleContainer from './components/IdleContainer'
 import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
