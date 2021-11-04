@@ -2,6 +2,7 @@ import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
 import BookingCreationPage from './components/Booking/BookingCreationPage'
+import DailyBookingLog from './components/Booking/DailyBookingLog'
 import IdleContainer from './components/IdleContainer'
 import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
@@ -39,6 +40,10 @@ import { useState } from 'react'
 
           <Route exact path ='/bookingcreate/:pg'>
             <BookingCreationPage bookingclerkid = {departmentid}/>
+          </Route>
+
+          <Route exact path ='/dailybookinglog'>
+            <DailyBookingLog/>
           </Route>
 
         </Switch>
