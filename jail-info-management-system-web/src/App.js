@@ -7,8 +7,7 @@ import IdleContainer from './components/IdleContainer'
 import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
-
-
+import NewTransaction from './components/Transactions/NewTransaction'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -45,6 +44,10 @@ import { useState } from 'react'
           <Route exact path ='/dailybookinglog'>
             <DailyBookingLog/>
           </Route>
+
+           <Route exact path ='/newtransaction'>
+            <NewTransaction/>
+          </Route> 
 
         </Switch>
       </div>

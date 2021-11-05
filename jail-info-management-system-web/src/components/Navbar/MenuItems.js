@@ -1,19 +1,37 @@
-export const MenuItems = [
-    //trust accounts
-    //subsections for cash
+
+
+export const SubMenuItems = [
     {
-        title: 'Home',
-        url: '/home',
-        cName: 'nav-links'
-    },
-    { //create, log, search
-        title: 'Booking',
+        title: 'New Entry',
         url: '/bookingcreate/1',
-        cName: 'nav-links'
+        cName: 'navItem',
     },
     {
-        title: 'Logout',
-        url: '/',
-        cName: 'nav-links'
+        title: 'Booking Log',
+        url: '/home',
+        cName: 'navItem',
     },
-]
+    {
+        title: 'Search Inmate',
+        url: '/',
+        cName: 'navItem',
+    },
+];
+
+export const TrustSubMenuItems = [
+    {
+        title: 'New Transaction',
+        url: '/newtransaction',
+        cName: 'navItem'
+    },
+    {
+        title: 'Transactions Log',
+        url: '/home',
+        cName: 'navItem'
+    },
+    {
+        title: 'Safe Transaction',
+        url: '/home',
+        cName: 'navItem',
+    },
+];
