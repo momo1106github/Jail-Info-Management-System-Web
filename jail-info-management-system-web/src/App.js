@@ -8,6 +8,7 @@ import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
+import Navbar from './components/Navbar/Navbar'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -24,6 +25,7 @@ import NewTransaction from './components/Transactions/NewTransaction'
      <div className="App">
        <IdleContainer timeoutfunction = {logout}></IdleContainer>
        <Redirect departmentid = {departmentid} role = {privilege} desturl = {"/"}/>
+       <Navbar/>
        
 
        <div className = "Page Container">

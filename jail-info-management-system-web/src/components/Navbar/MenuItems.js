@@ -8,7 +8,7 @@ export const SubMenuItems = [
     },
     {
         title: 'Booking Log',
-        url: '/home',
+        url: '/dailybookinglog',
         cName: 'navItem',
     },
     {
