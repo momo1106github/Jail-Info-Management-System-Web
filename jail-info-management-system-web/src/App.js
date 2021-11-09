@@ -1,12 +1,14 @@
 import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
-import BookingCreationPage from './components/BookingCreationPage'
+import BookingCreationPage from './components/Booking/BookingCreationPage'
+import DailyBookingLog from './components/Booking/DailyBookingLog'
 import IdleContainer from './components/IdleContainer'
 import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
+import SearchInmate from './components/Search/SearchInmate'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -23,10 +25,11 @@ import NewTransaction from './components/Transactions/NewTransaction'
      <div className="App">
        <IdleContainer timeoutfunction = {logout}></IdleContainer>
        <Redirect departmentid = {departmentid} role = {privilege} desturl = {"/"}/>
+       
 
        <div className = "Page Container">
          <Switch>
-          
+  
           <Route exact path ="/">
             <LoginPage setview = {setPrivilege} setdeptid = {setDepartmentId}/>
           </Route>
@@ -36,13 +39,20 @@ import NewTransaction from './components/Transactions/NewTransaction'
           </Route>
 
           <Route exact path ='/bookingcreate/:pg'>
-            <BookingCreationPage/>
+            <BookingCreationPage bookingclerkid = {departmentid}/>
           </Route>
 
-          <Route exact path ='/newtransaction'>
+          <Route exact path ='/dailybookinglog'>
+            <DailyBookingLog/>
+          </Route>
+
+           <Route exact path ='/newtransaction'>
             <NewTransaction/>
+          </Route> 
+          
+          <Route exact path ='/searchInmate'>
+            <SearchInmate/>
           </Route>
-
         </Switch>
       </div>
     </div>
