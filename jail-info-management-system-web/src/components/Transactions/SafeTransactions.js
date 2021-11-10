@@ -1,13 +1,11 @@
-import Navbar from "../Navbar/Navbar";
+import { useState } from 'react';
 
 const SafeTransaction = () => {
 
     return (
         <div className = "SafeTransaction">
-            <Navbar></Navbar>
-            {/* <Header title='Trust: Safe Transaction'/>
-            <LinkButton linklabel = 'Home' link = '/home'/> */}
-      </div>
+            <h1>Safe Transaction</h1>
+        </div>
       )
   }
   export default SafeTransaction
