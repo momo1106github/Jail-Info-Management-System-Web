@@ -49,7 +49,7 @@ import TransactionLog from './components/Transactions/TransactionLog'
             <DailyBookingLog/>
           </Route>
 
-           <Route exact path ='/newtransaction'>
+           <Route exact path ='/newtransaction/:pg'>
             <NewTransaction/>
           </Route> 
 
