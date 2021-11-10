@@ -1,6 +1,7 @@
 import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage'
 import BookingCreationPage from './components/Booking/BookingCreationPage'
 import DailyBookingLog from './components/Booking/DailyBookingLog'
 import IdleContainer from './components/IdleContainer'
@@ -36,8 +37,12 @@ import Navbar from './components/Navbar/Navbar'
           </Route>
 
           <Route exact path= "/home">
-            <HomePage/>   
+            <HomePage privilege = {privilege}/>   
           </Route>
+
+          <Route exact path ='/signup'>
+            <SignupPage permission = {privilege === 'supervisor'? true : false}/>
+          </Route> 
 
           <Route exact path ='/bookingcreate/:pg'>
             <BookingCreationPage bookingclerkid = {departmentid}/>

@@ -18,11 +18,12 @@ const LoginPage = ({setview, setdeptid}) => {
        //Checks if there is anything entered
         if(username&&password){
           
-          axios.post("http://localhost:5000/api/user/login", {deptId: username, password: password})
+          axios.post("http://localhost:5000/api/user/login", {deptID: username, password: password})
           .then (function (response){
           //Clears values to prevent logging out
           //And then being able to immediately log back in
           setview(response.data.role);
+          console.log(response.data.role);
           setdeptid(username);
           setUsername('');
           setPassword('');
