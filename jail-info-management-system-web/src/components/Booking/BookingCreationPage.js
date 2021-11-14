@@ -268,9 +268,9 @@ const BookingCreationPage = ({bookingclerkid}) => {
 
       <Button buttonlabel = 'Clear All Input' onClick = {ClearInput}/>
       <Header2 title = 'Basic Information'/>
-      <PreInput defaultvalue = {firstname} inputlabel = 'First Name' onChange = {setFirstName}/>
-      <PreInput defaultvalue = {middlename} inputlabel = 'Middle Name' onChange = {setMiddleName}/>
-      <PreInput defaultvalue = {lastname} inputlabel = 'Last Name' onChange = {setLastName}/>
+      <PreInput defaultvalue = {firstname} inputlabel = 'First Name' onChange = {setFirstName} id = 'firstname-entry'/>
+      <PreInput defaultvalue = {middlename} inputlabel = 'Middle Name' onChange = {setMiddleName} id='middlename-entry'/>
+      <PreInput defaultvalue = {lastname} inputlabel = 'Last Name' onChange = {setLastName} id= 'lastname-entry'/>
       <PreInput defaultvalue = {suffix} inputlabel = 'Suffix' onChange = {setSuffix}/>
       <PreInput defaultvalue = {aka} inputlabel = 'AKA' onChange = {setAKA}/>
       <PreInput defaultvalue = {dob} inputlabel = 'Date of Birth' onChange = {setDOB}/>
@@ -409,7 +409,7 @@ const BookingCreationPage = ({bookingclerkid}) => {
       <PreInput defaultvalue = {bail} inputlabel = 'Manual Bail' onChange = {setBail}/>
       <PreInput defaultvalue = {sentence} inputlabel = 'Set Sentence' onChange = {setSentence}/>
       
-      <Button buttonlabel = 'Confirm Input' onClick = {confirmInput}/>
+      <Button buttonlabel = 'Confirm Input' onClick = {confirmInput} id = 'confirm-input-button'/>
       </div>}
 
       {parseInt(pg)===2 &&
