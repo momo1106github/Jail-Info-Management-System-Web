@@ -1,7 +1,7 @@
-const Button = ({buttonlabel, onClick}) => {
+const Button = ({buttonlabel, onClick, id = ''}) => {
     return (
         <div className= 'Button'>
-            <button className = 'btn' onClick = {()=> onClick()}>
+            <button className = 'btn' onClick = {()=> onClick()} id = {id}>
                 {buttonlabel}
             </button>
 

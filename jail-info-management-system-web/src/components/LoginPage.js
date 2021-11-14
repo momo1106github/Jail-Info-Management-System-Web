@@ -42,10 +42,10 @@ const LoginPage = ({setview, setdeptid}) => {
     return (
         <div className= "LoginPage">
               <Header title='Login' id='Login Header'/>
-              <Input inputlabel = 'Department ID ' onChange = {setUsername}/>
-              <Input inputlabel = 'Password ' onChange = {setPassword} inputtype ='password' />
-              <Button buttonlabel='Login' onClick = {login} />
-              <div className = 'errormessage'>{errormsg}</div>
+              <Input inputlabel = 'Department ID ' onChange = {setUsername} id = 'username'/>
+              <Input inputlabel = 'Password ' onChange = {setPassword} inputtype ='password' id ='password'/>
+              <Button buttonlabel='Login' onClick = {login}  id = 'login-button'/>
+              <div className = 'errormessage' id = 'login-error-msg'>{errormsg}</div>
         </div>
     )
 }
