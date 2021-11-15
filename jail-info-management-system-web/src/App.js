@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
 import SearchInmate from './components/Search/SearchInmate'
+import Navbar from './components/Navbar/Navbar'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -25,6 +26,7 @@ import SearchInmate from './components/Search/SearchInmate'
      <div className="App">
        <IdleContainer timeoutfunction = {logout}></IdleContainer>
        <Redirect departmentid = {departmentid} role = {privilege} desturl = {"/"}/>
+       <Navbar/>
        
 
        <div className = "Page Container">
@@ -49,7 +51,7 @@ import SearchInmate from './components/Search/SearchInmate'
            <Route exact path ='/newtransaction'>
             <NewTransaction/>
           </Route> 
-          
+
           <Route exact path ='/searchInmate'>
             <SearchInmate/>
           </Route>

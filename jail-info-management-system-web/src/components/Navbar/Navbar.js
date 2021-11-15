@@ -5,8 +5,11 @@ import './Navbar.css';
 import {Link} from 'react-router-dom';
 import BookingDropdown from './Dropdown';
 import TrustDropdown from './TrustDropdown';
+import { useLocation } from 'react-router';
+import logout from '../../App'
 
 function Navbar() {
+    const location = useLocation();
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const [trustDrop, setDropdown2] = useState(false);
@@ -30,7 +33,8 @@ function Navbar() {
     
     return(
         <nav className="navbar">
-            <LinkButton linklabel="JISM" link="/home" page="navItem"/>
+            <LinkButton linklabel="JIMS" link="/home" page="navItem"/>
+            {location.pathname!== '/'&&<div>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                 <li className='nav-item'>
                 <Link
@@ -68,11 +72,12 @@ function Navbar() {
                 <li className='nav-item'>
                 <Link
                 to="/"
-                className="navItem">
+                className="navItem"
+                onClick={logout}>
                     Logout
                 </Link>
                         </li>
-            </ul>
+            </ul> </div>}
         </nav>
     )
 }
