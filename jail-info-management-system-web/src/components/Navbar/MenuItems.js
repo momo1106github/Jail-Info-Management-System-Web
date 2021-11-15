@@ -21,17 +21,17 @@ export const SubMenuItems = [
 export const TrustSubMenuItems = [
     {
         title: 'New Transaction',
-        url: '/newtransaction',
+        url: '/newtransaction/1',
         cName: 'navItem'
     },
     {
         title: 'Transactions Log',
-        url: '/home',
+        url: '/transactionlog',
         cName: 'navItem'
     },
     {
         title: 'Safe Transaction',
-        url: '/home',
+        url: '/safetransaction',
         cName: 'navItem',
     },
 ];

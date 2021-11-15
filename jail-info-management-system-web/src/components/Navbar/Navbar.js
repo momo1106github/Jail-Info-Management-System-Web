@@ -62,7 +62,7 @@ function Navbar() {
                 onMouseLeave={onMouseLeave2}
                 >
                     <Link
-                     to='/home'
+                     to='/newtransaction/1'
                      className='nav-links'
                     >
                     Trust Accounts

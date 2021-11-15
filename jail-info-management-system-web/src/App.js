@@ -1,6 +1,7 @@
 import React from 'react'
 import HomePage from './components/HomePage'
 import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage'
 import BookingCreationPage from './components/Booking/BookingCreationPage'
 import DailyBookingLog from './components/Booking/DailyBookingLog'
 import IdleContainer from './components/IdleContainer'
@@ -10,6 +11,8 @@ import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
 import SearchInmate from './components/Search/SearchInmate'
 import Navbar from './components/Navbar/Navbar'
+import SafeTransaction from './components/Transactions/SafeTransactions'
+import TransactionLog from './components/Transactions/TransactionLog'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -37,8 +40,12 @@ import Navbar from './components/Navbar/Navbar'
           </Route>
 
           <Route exact path= "/home">
-            <HomePage/>   
+            <HomePage privilege = {privilege}/>   
           </Route>
+
+          <Route exact path ='/signup'>
+            <SignupPage permission = {privilege === 'supervisor'? true : false}/>
+          </Route> 
 
           <Route exact path ='/bookingcreate/:pg'>
             <BookingCreationPage bookingclerkid = {departmentid}/>
@@ -48,13 +55,24 @@ import Navbar from './components/Navbar/Navbar'
             <DailyBookingLog/>
           </Route>
 
-           <Route exact path ='/newtransaction'>
+           <Route exact path ='/newtransaction/:pg'>
             <NewTransaction/>
           </Route> 
 
+<<<<<<< HEAD
           <Route exact path ='/searchInmate'>
             <SearchInmate/>
           </Route>
+=======
+          <Route exact path ='/safetransaction'>
+            <SafeTransaction/>
+          </Route>
+
+          <Route exact path ='/transactionlog'>
+            <TransactionLog/>
+          </Route>  
+
+>>>>>>> 9d46dc76617aa91557d80557fcd6cfff448a7194
         </Switch>
       </div>
     </div>

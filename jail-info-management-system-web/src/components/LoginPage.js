@@ -18,11 +18,12 @@ const LoginPage = ({setview, setdeptid}) => {
        //Checks if there is anything entered
         if(username&&password){
           
-          axios.post("http://localhost:5000/api/user/login", {deptId: username, password: password})
+          axios.post("http://localhost:5000/api/user/login", {deptID: username, password: password})
           .then (function (response){
           //Clears values to prevent logging out
           //And then being able to immediately log back in
           setview(response.data.role);
+          console.log(response.data.role);
           setdeptid(username);
           setUsername('');
           setPassword('');
@@ -41,10 +42,10 @@ const LoginPage = ({setview, setdeptid}) => {
     return (
         <div className= "LoginPage">
               <Header title='Login' id='Login Header'/>
-              <Input inputlabel = 'Department ID ' onChange = {setUsername}/>
-              <Input inputlabel = 'Password ' onChange = {setPassword} inputtype ='password' />
-              <Button buttonlabel='Login' onClick = {login} />
-              <div className = 'errormessage'>{errormsg}</div>
+              <Input inputlabel = 'Department ID ' onChange = {setUsername} id = 'username'/>
+              <Input inputlabel = 'Password ' onChange = {setPassword} inputtype ='password' id ='password'/>
+              <Button buttonlabel='Login' onClick = {login}  id = 'login-button'/>
+              <div className = 'errormessage' id = 'login-error-msg'>{errormsg}</div>
         </div>
     )
 }

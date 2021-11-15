@@ -1,13 +1,11 @@
-import Navbar from "../Navbar/Navbar";
+import { useState } from 'react';
 
-const SafeTransaction = () => {
+const SafeTransactions = () => {
 
     return (
-        <div className = "SafeTransaction">
-            <Navbar></Navbar>
-            {/* <Header title='Trust: Safe Transaction'/>
-            <LinkButton linklabel = 'Home' link = '/home'/> */}
-      </div>
+        <div className = "SafeTransactions">
+            <h1>Safe Transaction</h1>
+        </div>
       )
   }
-  export default SafeTransaction
+  export default SafeTransactions
