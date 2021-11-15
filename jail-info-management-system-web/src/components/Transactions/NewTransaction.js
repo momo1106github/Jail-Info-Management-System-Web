@@ -27,11 +27,25 @@ const NewTransaction = ({bookingclerkid}) => {
         {value: 'Withdraw'}
     ]
 
+    const relationlist = [
+        {value: 'Spouse'},
+        {value: 'Father'},
+        {value: 'Mother'},
+        {value: 'Sibling'},
+        {value: 'Grandparent'},
+        {value: 'Other'}
+
+    ]
+
     //Transaction Type
     const [transtype, setTransType] = useState("");
 
-    //Information
+    //Transaction Amount
     const [transamount, setTransAmount] = useState();
+
+    //Person Making the Transaction
+    const [transPerson, setTransPerson] = useState("");
+    const [realationInamte, setRelationInmate] = useState("");
 
     //Reason
     const [reason, setReason] = useState("");
@@ -84,24 +98,48 @@ const NewTransaction = ({bookingclerkid}) => {
             <Button buttonlabel = 'Clear All Input' onClick = {ClearInput}/>
             <Header2 title = 'Inmate Search'/>
 
+            <Header2 tite = 'Transaction Informataion'/>
             <Dropdown setvalue = {setTransType} items = {transoptionlist} title = 'Transaction Type '/>
             <PreInput defaultvalue = {transamount} inputlabel = 'Amount ' onChange = {setTransAmount}/>
 
+            <Header2 title = 'Person Making Transaction'/>
+            <PreInput defaultvalue = {transPerson} inputlabel = 'Name ' onChange = {setTransPerson}/>
+            <Dropdown setvalue = {setRelationInmate} items = {relationlist} title = 'Relation Type '/>
+
             <Header2 title = 'Reason for Transaction'/>
             <PreInput defaultvalue = {reason} inputlabel = '' onChange = {setReason}/>
-            
+
             <Button buttonlabel = 'Confirm Input' onClick = {confirmInput}/>
             </div>
         }
         
         {parseInt(pg)===2 && 
             <div className = "newtransactionreceipt">
-            <Header2 title='Receipt Transaction'/>
-            
+                <Header2 title='Receipt Transaction'/>
+                <label>Booking Clerk ID: {bookingclerkid}</label><br/>
+                <label>Transaction Time at: {transactiontime}</label><br/>
+                <div className = 'TransactionReceiptInfo'>
+                    <label className = 'TransactionReceiptTitle'>Transaction Information:</label>
+                    <pre className = 'TransactionReceiptText'>{`
+                        Inmate Name:
+                        Inmate ID: 
+                        Inamte Account Number:
+                        Transaction Type: ${transtype}
+                        Transaction Amount: ${transamount}
+                        Previous Account Total:
+                        Current Account Total:
+                        Person Making Transaction: ${transPerson}
+                        `}
+                    </pre>
+
+                </div>
+                
+                <div className = 'Transaction Signatures'>
+                    <label className = 'Transaction Signatures'>Transaction Signatures</label>
+                </div>
                 <div className = 'BookingReceiptButtons'>
                     <Button buttonlabel = 'Back' onClick = {back}/>
                 </div>
-            
             </div>
         }
         </div>
