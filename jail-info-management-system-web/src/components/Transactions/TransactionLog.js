@@ -1,12 +1,10 @@
-import Navbar from "../Navbar/Navbar";
+import { useState } from 'react';
 
 const TransactionLog = () => {
 
     return (
         <div className = "Transactionlog">
-            <Navbar></Navbar>
-            {/* <Header title='Trust: Transaction Log'/>
-            <LinkButton linklabel = 'Home' link = '/home'/> */}
+            <h1>Transaction Log</h1>          
       </div>
       )
   }

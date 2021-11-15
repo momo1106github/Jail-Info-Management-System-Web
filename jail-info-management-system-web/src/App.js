@@ -9,6 +9,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
 import Navbar from './components/Navbar/Navbar'
+import SafeTransaction from './components/Transactions/SafeTransactions'
+import TransactionLog from './components/Transactions/TransactionLog'
 
  function App() {
  const [departmentid, setDepartmentId] = useState("");
@@ -47,9 +49,17 @@ import Navbar from './components/Navbar/Navbar'
             <DailyBookingLog/>
           </Route>
 
-           <Route exact path ='/newtransaction'>
+           <Route exact path ='/newtransaction/:pg'>
             <NewTransaction/>
           </Route> 
+
+          <Route exact path ='/safetransaction'>
+            <SafeTransaction/>
+          </Route>
+
+          <Route exact path ='/transactionlog'>
+            <TransactionLog/>
+          </Route>  
 
         </Switch>
       </div>
