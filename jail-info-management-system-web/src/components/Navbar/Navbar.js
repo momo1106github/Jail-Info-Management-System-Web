@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import BookingDropdown from './Dropdown';
 import TrustDropdown from './TrustDropdown';
 import { useLocation } from 'react-router';
+import logout from '../../App'
 
 function Navbar() {
     const location = useLocation();
@@ -71,7 +72,8 @@ function Navbar() {
                 <li className='nav-item'>
                 <Link
                 to="/"
-                className="navItem">
+                className="navItem"
+                onClick={logout}>
                     Logout
                 </Link>
                         </li>

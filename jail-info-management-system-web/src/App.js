@@ -9,6 +9,7 @@ import Redirect from './components/Redirect'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState } from 'react'
 import NewTransaction from './components/Transactions/NewTransaction'
+import SearchInmate from './components/Search/SearchInmate'
 import Navbar from './components/Navbar/Navbar'
 import SafeTransaction from './components/Transactions/SafeTransactions'
 import TransactionLog from './components/Transactions/TransactionLog'
@@ -58,6 +59,11 @@ import TransactionLog from './components/Transactions/TransactionLog'
             <NewTransaction/>
           </Route> 
 
+<<<<<<< HEAD
+          <Route exact path ='/searchInmate'>
+            <SearchInmate/>
+          </Route>
+=======
           <Route exact path ='/safetransaction'>
             <SafeTransaction/>
           </Route>
@@ -66,6 +72,7 @@ import TransactionLog from './components/Transactions/TransactionLog'
             <TransactionLog/>
           </Route>  
 
+>>>>>>> 9d46dc76617aa91557d80557fcd6cfff448a7194
         </Switch>
       </div>
     </div>

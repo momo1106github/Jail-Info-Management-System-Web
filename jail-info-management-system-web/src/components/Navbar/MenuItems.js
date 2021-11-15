@@ -13,7 +13,7 @@ export const SubMenuItems = [
     },
     {
         title: 'Search Inmate',
-        url: '/',
+        url: '/searchInmate',
         cName: 'navItem',
     },
 ];
